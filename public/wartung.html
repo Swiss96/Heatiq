@@ -3,48 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Wartung anmelden – HeatIQ</title>
-
 <link rel="stylesheet" href="forms.css">
 </head>
 
 <body>
 
 <header class="form-header">
-
-  <a class="form-logo" href="index.html">
-    HEAT<span>IQ</span>
-  </a>
-
-  <a class="back-link" href="index.html">
-    ← Zurück zur Website
-  </a>
-
+  <a class="form-logo" href="index.html">HEAT<span>IQ</span></a>
+  <a class="back-link" href="index.html">← Zurück zur Website</a>
 </header>
 
-
 <section class="form-hero">
-
   <div class="form-wrap">
-
-    <p class="eyebrow">
-      02 · SERVICE & WARTUNG
-    </p>
-
-    <h1>
-      Wartung anmelden
-    </h1>
-
+    <p class="eyebrow">02 · SERVICE & WARTUNG</p>
+    <h1>Wartung anmelden</h1>
     <p>
       Eine saubere Wartung beginnt mit den richtigen Informationen.
       Mit diesen Angaben können wir die Anlage und den Einsatz optimal vorbereiten.
     </p>
-
   </div>
-
 </section>
-
 
 <main class="form-main">
 
@@ -52,7 +31,7 @@
 
 
 <!-- =========================================================
-     AUFTRAGGEBER / RECHNUNGSADRESSE
+     AUFTRAGGEBER
 ========================================================= -->
 
 <section class="form-card">
@@ -67,7 +46,6 @@
 
     <div class="field">
       <label>Auftraggeber *</label>
-
       <select required name="kundentyp">
         <option value="">Bitte wählen</option>
         <option>Privatperson</option>
@@ -78,20 +56,16 @@
       </select>
     </div>
 
-
     <div class="field">
       <label>Firma</label>
-
       <input
         name="firma"
         autocomplete="organization"
       >
     </div>
 
-
     <div class="field">
       <label>Vorname *</label>
-
       <input
         required
         name="vorname"
@@ -99,10 +73,8 @@
       >
     </div>
 
-
     <div class="field">
       <label>Name *</label>
-
       <input
         required
         name="name"
@@ -110,10 +82,8 @@
       >
     </div>
 
-
     <div class="field full">
       <label>Strasse / Nr. *</label>
-
       <input
         required
         name="auftraggeber_strasse"
@@ -121,10 +91,8 @@
       >
     </div>
 
-
     <div class="field">
       <label>PLZ *</label>
-
       <input
         required
         name="auftraggeber_plz"
@@ -134,10 +102,8 @@
       >
     </div>
 
-
     <div class="field">
       <label>Ort *</label>
-
       <input
         required
         name="auftraggeber_ort"
@@ -150,9 +116,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     KONTAKT FÜR RÜCKFRAGEN
+     KONTAKT
 ========================================================= -->
 
 <section class="form-card">
@@ -167,42 +132,39 @@
 
     <div class="field">
       <label>Vorname *</label>
-
       <input
         required
         name="kontakt_vorname"
+        autocomplete="section-kontakt given-name"
       >
     </div>
-
 
     <div class="field">
       <label>Name *</label>
-
       <input
         required
         name="kontakt_name"
+        autocomplete="section-kontakt family-name"
       >
     </div>
 
-
     <div class="field">
       <label>E-Mail *</label>
-
       <input
         required
         type="email"
         name="kontakt_email"
+        autocomplete="section-kontakt email"
       >
     </div>
 
-
     <div class="field">
       <label>Telefon *</label>
-
       <input
         required
         type="tel"
         name="kontakt_telefon"
+        autocomplete="section-kontakt tel"
       >
     </div>
 
@@ -211,9 +173,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     KONTAKTPERSON VOR ORT
+     KONTAKT VOR ORT
 ========================================================= -->
 
 <section class="form-card">
@@ -224,62 +185,52 @@
     Wen dürfen wir beim Wartungstermin vor Ort kontaktieren?
   </p>
 
-
   <label class="check">
-
     <input
       type="checkbox"
       name="kontakt_vor_ort_gleich"
       value="Ja"
       checked
     >
-
-    <span>
-      Gleich wie Kontakt für Rückfragen
-    </span>
-
+    <span>Gleich wie Kontakt für Rückfragen</span>
   </label>
-
 
   <div class="grid-2" style="margin-top:20px;">
 
     <div class="field">
       <label>Vorname *</label>
-
       <input
         required
         name="vorort_vorname"
+        autocomplete="section-vorort given-name"
       >
     </div>
-
 
     <div class="field">
       <label>Name *</label>
-
       <input
         required
         name="vorort_name"
+        autocomplete="section-vorort family-name"
       >
     </div>
 
-
     <div class="field">
       <label>Telefon *</label>
-
       <input
         required
         type="tel"
         name="vorort_telefon"
+        autocomplete="section-vorort tel"
       >
     </div>
 
-
     <div class="field">
       <label>E-Mail</label>
-
       <input
         type="email"
         name="vorort_email"
+        autocomplete="section-vorort email"
       >
     </div>
 
@@ -288,9 +239,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     STANDORT DER ANLAGE
+     STANDORT
 ========================================================= -->
 
 <section class="form-card">
@@ -301,38 +251,25 @@
     Adresse, an der die Wärmepumpe installiert ist.
   </p>
 
-
   <label class="check">
-
     <input
       type="checkbox"
       name="standort_gleich"
       value="Ja"
       checked
     >
-
-    <span>
-      Gleiche Adresse wie Auftraggeber / Rechnungsadresse
-    </span>
-
+    <span>Gleiche Adresse wie Auftraggeber / Rechnungsadresse</span>
   </label>
-
 
   <div class="grid-2" style="margin-top:20px;">
 
     <div class="field full">
       <label>Strasse / Nr. *</label>
-
-      <input
-        required
-        name="standort_strasse"
-      >
+      <input required name="standort_strasse">
     </div>
-
 
     <div class="field">
       <label>PLZ *</label>
-
       <input
         required
         name="standort_plz"
@@ -341,22 +278,13 @@
       >
     </div>
 
-
     <div class="field">
       <label>Ort *</label>
-
-      <input
-        required
-        name="standort_ort"
-      >
+      <input required name="standort_ort">
     </div>
 
-
     <div class="field full">
-      <label>
-        Gebäude / Gebäudeteil / Zugangshinweis
-      </label>
-
+      <label>Gebäude / Gebäudeteil / Zugangshinweis</label>
       <input
         name="standort_zugang"
         placeholder="z. B. Technikraum UG, Zugang über Tiefgarage"
@@ -366,7 +294,6 @@
   </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -381,98 +308,65 @@
     Angaben zur Anlage helfen uns bei der Vorbereitung der Wartung.
   </p>
 
-
   <div class="grid-2">
 
     <div class="field">
       <label>Hersteller *</label>
-
-      <input
-        required
-        name="hersteller"
-      >
+      <input required name="hersteller">
     </div>
-
 
     <div class="field">
       <label>Modell / Typ *</label>
-
-      <input
-        required
-        name="modell"
-      >
+      <input required name="modell">
     </div>
-
 
     <div class="field">
       <label>Seriennummer</label>
-
-      <input
-        name="seriennummer"
-      >
+      <input name="seriennummer">
     </div>
-
 
     <div class="field">
       <label>Alter der Anlage</label>
-
       <input
         name="anlagenalter"
         placeholder="z. B. 4 Jahre"
       >
     </div>
 
-
     <div class="field">
       <label>Gebäudetyp</label>
-
       <select name="gebaeudetyp">
-
         <option value="">Bitte wählen</option>
         <option>EFH</option>
         <option>MFH</option>
         <option>Gewerbe</option>
         <option>Sonstiges</option>
-
       </select>
     </div>
 
-
     <div class="field">
       <label>Wärmeabgabe</label>
-
       <select name="waermeabgabe">
-
         <option value="">Bitte wählen</option>
         <option>Fussbodenheizung</option>
         <option>Radiatoren</option>
         <option>Gemischt</option>
         <option>Andere</option>
-
       </select>
     </div>
-
 
     <div class="field">
       <label>Warmwasser über Wärmepumpe?</label>
-
       <select name="warmwasser">
-
         <option value="">Bitte wählen</option>
         <option>Ja</option>
         <option>Nein</option>
-
       </select>
     </div>
 
-
     <div class="field">
       <label>Letzte Wartung</label>
-
-      <input
-        type="date"
-        name="letzte_wartung"
-      >
+      <input type="date" name="letzte_wartung">
     </div>
 
   </div>
@@ -480,9 +374,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     ART DER WARTUNG
+     WARTUNGSUMFANG
 ========================================================= -->
 
 <section class="form-card">
@@ -493,126 +386,46 @@
     Bitte auswählen, was gewünscht ist. Mehrfachauswahl möglich.
   </p>
 
-
   <div class="choice-grid cards">
 
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Allgemeine Wartung"
-      >
-
-      <span>
-        Allgemeine Wartung
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Allgemeine Wartung">
+      <span>Allgemeine Wartung</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Funktionskontrolle"
-      >
-
-      <span>
-        Funktionskontrolle
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Funktionskontrolle">
+      <span>Funktionskontrolle</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Anlagenoptimierung"
-      >
-
-      <span>
-        Anlagenoptimierung
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Anlagenoptimierung">
+      <span>Anlagenoptimierung</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Heizkurve / Einstellungen prüfen"
-      >
-
-      <span>
-        Heizkurve / Einstellungen prüfen
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Heizkurve / Einstellungen prüfen">
+      <span>Heizkurve / Einstellungen prüfen</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Warmwasser prüfen"
-      >
-
-      <span>
-        Warmwasser prüfen
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Warmwasser prüfen">
+      <span>Warmwasser prüfen</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Störungs- oder Fehlerhistorie prüfen"
-      >
-
-      <span>
-        Störungs- / Fehlerhistorie prüfen
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Störungs- oder Fehlerhistorie prüfen">
+      <span>Störungs- / Fehlerhistorie prüfen</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Reinigung"
-      >
-
-      <span>
-        Reinigung
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Reinigung">
+      <span>Reinigung</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="wartungsumfang"
-        value="Sonstiges"
-      >
-
-      <span>
-        Sonstiges
-      </span>
-
+      <input type="checkbox" name="wartungsumfang" value="Sonstiges">
+      <span>Sonstiges</span>
     </label>
 
   </div>
@@ -620,9 +433,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     AKTUELLER ZUSTAND
+     ANLAGENZUSTAND
 ========================================================= -->
 
 <section class="form-card">
@@ -633,173 +445,81 @@
     Gibt es aktuell Auffälligkeiten oder Punkte, die wir besonders beachten sollen?
   </p>
 
-
   <div class="choice-grid cards">
 
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="auffaelligkeit"
-        value="Keine Auffälligkeiten"
-      >
-
-      <span>
-        Keine Auffälligkeiten
-      </span>
-
+      <input type="checkbox" name="auffaelligkeit" value="Keine Auffälligkeiten">
+      <span>Keine Auffälligkeiten</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="auffaelligkeit"
-        value="Ungewöhnliche Geräusche"
-      >
-
-      <span>
-        Ungewöhnliche Geräusche
-      </span>
-
+      <input type="checkbox" name="auffaelligkeit" value="Ungewöhnliche Geräusche">
+      <span>Ungewöhnliche Geräusche</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="auffaelligkeit"
-        value="Hoher Energieverbrauch"
-      >
-
-      <span>
-        Hoher Energieverbrauch
-      </span>
-
+      <input type="checkbox" name="auffaelligkeit" value="Hoher Energieverbrauch">
+      <span>Hoher Energieverbrauch</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="auffaelligkeit"
-        value="Heizleistung ungenügend"
-      >
-
-      <span>
-        Heizleistung ungenügend
-      </span>
-
+      <input type="checkbox" name="auffaelligkeit" value="Heizleistung ungenügend">
+      <span>Heizleistung ungenügend</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="auffaelligkeit"
-        value="Warmwasser ungenügend"
-      >
-
-      <span>
-        Warmwasser ungenügend
-      </span>
-
+      <input type="checkbox" name="auffaelligkeit" value="Warmwasser ungenügend">
+      <span>Warmwasser ungenügend</span>
     </label>
 
-
     <label class="choice">
-
-      <input
-        type="checkbox"
-        name="auffaelligkeit"
-        value="Fehlermeldungen"
-      >
-
-      <span>
-        Fehlermeldungen
-      </span>
-
+      <input type="checkbox" name="auffaelligkeit" value="Fehlermeldungen">
+      <span>Fehlermeldungen</span>
     </label>
 
   </div>
 
-
   <div class="field" style="margin-top:20px;">
-
-    <label>
-      Beschreibung / Wünsche
-    </label>
-
+    <label>Beschreibung / Wünsche</label>
     <textarea
       name="beschreibung"
       placeholder="Was sollen wir bei der Wartung besonders prüfen oder beachten?"
     ></textarea>
-
   </div>
 
 </section>
 
 
-
 <!-- =========================================================
-     WUNSCHTERMIN
+     TERMIN
 ========================================================= -->
 
 <section class="form-card">
 
   <h2>Wunschtermin</h2>
 
-
   <div class="termin-grid">
 
     <div class="field">
-
-      <label>
-        Gewünschter Wartungstermin
-      </label>
-
-      <input
-        type="date"
-        name="termin1"
-      >
-
+      <label>Gewünschter Wartungstermin</label>
+      <input type="date" name="termin1">
     </div>
 
-
     <div class="field">
-
-      <label>
-        Ersatztermin
-      </label>
-
-      <input
-        type="date"
-        name="termin2"
-      >
-
+      <label>Ersatztermin</label>
+      <input type="date" name="termin2">
     </div>
 
   </div>
 
+  <div class="field termin-dringlichkeit">
 
-  <div
-    class="field termin-dringlichkeit"
-  >
-
-    <label>
-      Terminwunsch
-    </label>
+    <label>Terminwunsch</label>
 
     <select name="dringlichkeit">
-
       <option>Flexibel</option>
       <option>Termin bevorzugt</option>
       <option>Termin zwingend</option>
-
     </select>
 
   </div>
@@ -807,9 +527,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     UNTERLAGEN & BILDER
+     UNTERLAGEN
 ========================================================= -->
 
 <section class="form-card">
@@ -820,50 +539,30 @@
     Fotos des Typenschilds oder auffälliger Anlagenteile können bei der Vorbereitung helfen.
   </p>
 
-
   <div class="grid-2">
 
     <div class="field upload">
-
-      <label>
-        Foto Typenschild
-      </label>
-
+      <label>Foto Typenschild</label>
       <input
         type="file"
         accept="image/*,.pdf"
         name="typenschild"
       >
-
     </div>
 
-
     <div class="field upload">
-
-      <label>
-        Anlage / weitere Fotos
-      </label>
-
+      <label>Anlage / weitere Fotos</label>
       <input
         type="file"
         multiple
         accept="image/*,.pdf"
         name="fotos"
       >
-
     </div>
 
-
     <div class="field full">
-
-      <label>
-        Weitere Bemerkungen
-      </label>
-
-      <textarea
-        name="bemerkungen"
-      ></textarea>
-
+      <label>Weitere Bemerkungen</label>
+      <textarea name="bemerkungen"></textarea>
     </div>
 
   </div>
@@ -871,446 +570,207 @@
 </section>
 
 
-
-<!-- =========================================================
-     ABSENDEN
-========================================================= -->
-
 <div class="form-actions">
 
   <p class="privacy">
-
-    Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung
-    Ihrer Anfrage. Pflichtfelder sind mit * gekennzeichnet.
-
+    Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung Ihrer Anfrage.
+    Pflichtfelder sind mit * gekennzeichnet.
   </p>
 
-
-  <button
-    class="submit-btn"
-    type="submit"
-  >
-
+  <button class="submit-btn" type="submit">
     Wartung anfragen →
-
   </button>
 
 </div>
 
-
 </form>
 
 
-
-<section
-  class="success"
-  id="success"
->
-
-  <h2>
-    Anfrage erhalten.
-  </h2>
-
+<section class="success" id="success">
+  <h2>Anfrage erhalten.</h2>
   <p>
     Vielen Dank. Die Angaben wurden erfasst.
     Wir melden uns bei Ihnen, sobald wir die Anfrage geprüft haben.
   </p>
-
 </section>
-
 
 </main>
 
 
-
 <footer class="form-footer">
-
-  <span>
-    HeatIQ
-  </span>
-
-  <span>
-    info@heatiq.ch
-  </span>
-
+  <span>HeatIQ</span>
+  <span>info@heatiq.ch</span>
 </footer>
 
 
-
 <!-- =========================================================
-     PLZ + ÜBERNAHMEFUNKTIONEN
+     PLZ + ÜBERNAHME
 ========================================================= -->
 
 <script>
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-
-  /* =========================================================
-     PLZ-DATEN
-  ========================================================= */
-
   let plzData = {};
-
 
   try {
 
-    const response =
-      await fetch("/data/plz.json");
-
+    const response = await fetch("/data/plz.json");
 
     if (!response.ok) {
-
-      throw new Error(
-        "PLZ-Datei konnte nicht geladen werden."
-      );
-
+      throw new Error("PLZ-Datei konnte nicht geladen werden.");
     }
 
+    plzData = await response.json();
 
-    plzData =
-      await response.json();
+  } catch (error) {
 
-  }
-
-  catch (error) {
-
-    console.error(
-      "Fehler beim Laden der PLZ-Daten:",
-      error
-    );
+    console.error("Fehler beim Laden der PLZ-Daten:", error);
 
   }
 
-
-
-  /* =========================================================
-     TEXT NORMALISIEREN
-  ========================================================= */
 
   function clean(value) {
-
     return String(value || "")
       .trim()
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
-
   }
 
-
-
-  /* =========================================================
-     PLZ -> ORT
-  ========================================================= */
 
   function findOrtByPlz(plz) {
 
-    const entries =
-      plzData[String(plz).trim()];
+    const entries = plzData[String(plz).trim()];
 
-
-    if (
-      !Array.isArray(entries) ||
-      entries.length === 0
-    ) {
-
+    if (!Array.isArray(entries) || entries.length === 0) {
       return null;
-
     }
 
-
     return entries[0].name || null;
-
   }
 
-
-
-  /* =========================================================
-     ORT -> PLZ
-  ========================================================= */
 
   function findPlzByOrt(ort) {
 
-    const gesucht =
-      clean(ort);
+    const gesucht = clean(ort);
 
+    if (!gesucht) return null;
 
-    if (!gesucht) {
-      return null;
+    for (const [plz, entries] of Object.entries(plzData)) {
+
+      if (!Array.isArray(entries)) continue;
+
+      const match = entries.find(
+        entry => clean(entry.name) === gesucht
+      );
+
+      if (match) return plz;
     }
-
-
-    for (
-      const [plz, entries]
-      of Object.entries(plzData)
-    ) {
-
-
-      if (!Array.isArray(entries)) {
-        continue;
-      }
-
-
-      const match =
-        entries.find(
-          entry =>
-            clean(entry.name) === gesucht
-        );
-
-
-      if (match) {
-        return plz;
-      }
-
-    }
-
 
     return null;
-
   }
 
 
+  function connectPlzOrt(plzInput, ortInput) {
 
-  /* =========================================================
-     PLZ / ORT VERKNÜPFEN
-  ========================================================= */
+    if (!plzInput || !ortInput) return;
 
-  function connectPlzOrt(
-    plzInput,
-    ortInput
-  ) {
+    plzInput.addEventListener("input", () => {
 
+      const plz = plzInput.value.trim();
 
-    if (
-      !plzInput ||
-      !ortInput
-    ) {
-      return;
-    }
+      if (plz.length !== 4) return;
 
+      const ort = findOrtByPlz(plz);
 
+      if (ort) {
 
-    plzInput.addEventListener(
-      "input",
-      () => {
+        ortInput.value = ort;
 
-
-        const plz =
-          plzInput.value.trim();
-
-
-        if (plz.length !== 4) {
-          return;
-        }
-
-
-        const ort =
-          findOrtByPlz(plz);
-
-
-        if (ort) {
-
-          ortInput.value =
-            ort;
-
-
-          ortInput.dispatchEvent(
-            new Event(
-              "input",
-              { bubbles:true }
-            )
-          );
-
-        }
-
+        ortInput.dispatchEvent(
+          new Event("input", { bubbles:true })
+        );
       }
-    );
+    });
 
 
+    ortInput.addEventListener("change", () => {
 
-    ortInput.addEventListener(
-      "change",
-      () => {
+      const ort = ortInput.value.trim();
 
+      if (!ort) return;
 
-        const ort =
-          ortInput.value.trim();
+      const plz = findPlzByOrt(ort);
 
+      if (plz) {
 
-        if (!ort) {
-          return;
-        }
+        plzInput.value = plz;
 
-
-        const plz =
-          findPlzByOrt(ort);
-
-
-        if (plz) {
-
-          plzInput.value =
-            plz;
-
-
-          plzInput.dispatchEvent(
-            new Event(
-              "input",
-              { bubbles:true }
-            )
-          );
-
-        }
-
+        plzInput.dispatchEvent(
+          new Event("input", { bubbles:true })
+        );
       }
-    );
-
+    });
   }
 
 
+  connectPlzOrt(
+    document.querySelector('[name="auftraggeber_plz"]'),
+    document.querySelector('[name="auftraggeber_ort"]')
+  );
 
   connectPlzOrt(
-
-    document.querySelector(
-      '[name="auftraggeber_plz"]'
-    ),
-
-    document.querySelector(
-      '[name="auftraggeber_ort"]'
-    )
-
+    document.querySelector('[name="standort_plz"]'),
+    document.querySelector('[name="standort_ort"]')
   );
 
 
-  connectPlzOrt(
-
-    document.querySelector(
-      '[name="standort_plz"]'
-    ),
-
-    document.querySelector(
-      '[name="standort_ort"]'
-    )
-
-  );
-
-
-
-  /* =========================================================
-     KONTAKTPERSON VOR ORT
-  ========================================================= */
+  /* Kontakt vor Ort */
 
   const kontaktGleich =
-    document.querySelector(
-      '[name="kontakt_vor_ort_gleich"]'
-    );
-
+    document.querySelector('[name="kontakt_vor_ort_gleich"]');
 
   const kontaktQuelle = {
-
-    vorname:
-      document.querySelector(
-        '[name="kontakt_vorname"]'
-      ),
-
-    name:
-      document.querySelector(
-        '[name="kontakt_name"]'
-      ),
-
-    telefon:
-      document.querySelector(
-        '[name="kontakt_telefon"]'
-      ),
-
-    email:
-      document.querySelector(
-        '[name="kontakt_email"]'
-      )
-
+    vorname: document.querySelector('[name="kontakt_vorname"]'),
+    name: document.querySelector('[name="kontakt_name"]'),
+    telefon: document.querySelector('[name="kontakt_telefon"]'),
+    email: document.querySelector('[name="kontakt_email"]')
   };
-
 
   const kontaktZiel = {
-
-    vorname:
-      document.querySelector(
-        '[name="vorort_vorname"]'
-      ),
-
-    name:
-      document.querySelector(
-        '[name="vorort_name"]'
-      ),
-
-    telefon:
-      document.querySelector(
-        '[name="vorort_telefon"]'
-      ),
-
-    email:
-      document.querySelector(
-        '[name="vorort_email"]'
-      )
-
+    vorname: document.querySelector('[name="vorort_vorname"]'),
+    name: document.querySelector('[name="vorort_name"]'),
+    telefon: document.querySelector('[name="vorort_telefon"]'),
+    email: document.querySelector('[name="vorort_email"]')
   };
-
 
 
   function updateKontaktVorOrt() {
 
+    if (!kontaktGleich) return;
 
-    if (!kontaktGleich) {
-      return;
-    }
+    const gleich = kontaktGleich.checked;
 
+    Object.keys(kontaktZiel).forEach(key => {
 
-    const gleich =
-      kontaktGleich.checked;
+      const ziel = kontaktZiel[key];
+      const quelle = kontaktQuelle[key];
 
+      if (!ziel) return;
 
-    Object.keys(
-      kontaktZiel
-    ).forEach(key => {
-
-
-      const ziel =
-        kontaktZiel[key];
-
-
-      const quelle =
-        kontaktQuelle[key];
-
-
-      if (!ziel) {
-        return;
+      if (gleich && quelle) {
+        ziel.value = quelle.value;
       }
 
-
-      if (
-        gleich &&
-        quelle
-      ) {
-
-        ziel.value =
-          quelle.value;
-
-      }
-
-
-      ziel.readOnly =
-        gleich;
-
+      ziel.readOnly = gleich;
 
       ziel.classList.toggle(
         "auto-filled",
         gleich
       );
-
     });
-
   }
-
 
 
   kontaktGleich?.addEventListener(
@@ -1319,139 +779,64 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
 
 
-  Object.values(
-    kontaktQuelle
-  ).forEach(input => {
+  Object.values(kontaktQuelle).forEach(input => {
 
+    input?.addEventListener("input", () => {
 
-    input?.addEventListener(
-      "input",
-      () => {
-
-
-        if (
-          kontaktGleich?.checked
-        ) {
-
-          updateKontaktVorOrt();
-
-        }
-
+      if (kontaktGleich?.checked) {
+        updateKontaktVorOrt();
       }
-    );
 
+    });
   });
 
 
   updateKontaktVorOrt();
 
 
-
-  /* =========================================================
-     ANLAGENSTANDORT = AUFTRAGGEBER
-  ========================================================= */
+  /* Standort */
 
   const standortGleich =
-    document.querySelector(
-      '[name="standort_gleich"]'
-    );
-
+    document.querySelector('[name="standort_gleich"]');
 
   const adresseQuelle = {
-
-    strasse:
-      document.querySelector(
-        '[name="auftraggeber_strasse"]'
-      ),
-
-    plz:
-      document.querySelector(
-        '[name="auftraggeber_plz"]'
-      ),
-
-    ort:
-      document.querySelector(
-        '[name="auftraggeber_ort"]'
-      )
-
+    strasse: document.querySelector('[name="auftraggeber_strasse"]'),
+    plz: document.querySelector('[name="auftraggeber_plz"]'),
+    ort: document.querySelector('[name="auftraggeber_ort"]')
   };
-
 
   const adresseZiel = {
-
-    strasse:
-      document.querySelector(
-        '[name="standort_strasse"]'
-      ),
-
-    plz:
-      document.querySelector(
-        '[name="standort_plz"]'
-      ),
-
-    ort:
-      document.querySelector(
-        '[name="standort_ort"]'
-      )
-
+    strasse: document.querySelector('[name="standort_strasse"]'),
+    plz: document.querySelector('[name="standort_plz"]'),
+    ort: document.querySelector('[name="standort_ort"]')
   };
-
 
 
   function updateStandort() {
 
+    if (!standortGleich) return;
 
-    if (!standortGleich) {
-      return;
-    }
+    const gleich = standortGleich.checked;
 
+    Object.keys(adresseZiel).forEach(key => {
 
-    const gleich =
-      standortGleich.checked;
+      const ziel = adresseZiel[key];
+      const quelle = adresseQuelle[key];
 
+      if (!ziel) return;
 
-    Object.keys(
-      adresseZiel
-    ).forEach(key => {
-
-
-      const ziel =
-        adresseZiel[key];
-
-
-      const quelle =
-        adresseQuelle[key];
-
-
-      if (!ziel) {
-        return;
+      if (gleich && quelle) {
+        ziel.value = quelle.value;
       }
 
-
-      if (
-        gleich &&
-        quelle
-      ) {
-
-        ziel.value =
-          quelle.value;
-
-      }
-
-
-      ziel.readOnly =
-        gleich;
-
+      ziel.readOnly = gleich;
 
       ziel.classList.toggle(
         "auto-filled",
         gleich
       );
-
     });
-
   }
-
 
 
   standortGleich?.addEventListener(
@@ -1460,83 +845,46 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
 
 
-  Object.values(
-    adresseQuelle
-  ).forEach(input => {
+  Object.values(adresseQuelle).forEach(input => {
 
+    input?.addEventListener("input", () => {
 
-    input?.addEventListener(
-      "input",
-      () => {
-
-
-        if (
-          standortGleich?.checked
-        ) {
-
-          updateStandort();
-
-        }
-
+      if (standortGleich?.checked) {
+        updateStandort();
       }
-    );
 
+    });
   });
 
 
   updateStandort();
 
 
-
-  /* =========================================================
-     VOR DEM ABSENDEN SYNCHRONISIEREN
-  ========================================================= */
-
   const form =
-    document.getElementById(
-      "serviceForm"
-    );
+    document.getElementById("serviceForm");
 
 
   form?.addEventListener(
     "submit",
     () => {
 
-
-      if (
-        kontaktGleich?.checked
-      ) {
-
+      if (kontaktGleich?.checked) {
         updateKontaktVorOrt();
-
       }
 
-
-      if (
-        standortGleich?.checked
-      ) {
-
+      if (standortGleich?.checked) {
         updateStandort();
-
       }
 
     },
     true
   );
 
-
 });
 
 </script>
 
-
-
-<!-- =========================================================
-     FORMULARVERSAND
-========================================================= -->
-
 <script src="forms.js"></script>
-
 
 </body>
 </html>
