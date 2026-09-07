@@ -536,37 +536,27 @@
 
   <h2>Wunschtermin</h2>
 
-  <div class="appointment-grid" style="
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:18px;
-    align-items:end;
-  ">
+  <div class="grid-2">
 
-    <div class="field" style="min-width:0;">
+    <div class="field">
       <label>Gewünschter IBN-Termin</label>
       <input
         type="date"
         name="termin1"
-        style="width:100%;box-sizing:border-box;"
       >
     </div>
 
-    <div class="field" style="min-width:0;">
+    <div class="field">
       <label>Ersatztermin</label>
       <input
         type="date"
         name="termin2"
-        style="width:100%;box-sizing:border-box;"
       >
     </div>
 
-    <div class="field" style="min-width:0;">
+    <div class="field full">
       <label>Dringlichkeit</label>
-      <select
-        name="dringlichkeit"
-        style="width:100%;box-sizing:border-box;"
-      >
+      <select name="dringlichkeit">
         <option>Normal</option>
         <option>Dringend</option>
         <option>Termin zwingend</option>
