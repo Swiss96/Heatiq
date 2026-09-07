@@ -3,108 +3,1443 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Störung melden – HeatIQ</title>
+
 <link rel="stylesheet" href="forms.css">
 </head>
+
 <body>
+
 <header class="form-header">
-  <a class="form-logo" href="index.html">HEAT<span>IQ</span></a>
-  <a class="back-link" href="index.html">← Zurück zur Website</a>
+
+  <a class="form-logo" href="index.html">
+    HEAT<span>IQ</span>
+  </a>
+
+  <a class="back-link" href="index.html">
+    ← Zurück zur Website
+  </a>
+
 </header>
 
+
 <section class="form-hero">
+
   <div class="form-wrap">
-    <p class="eyebrow">03 · STÖRUNG / NOTDIENST</p>
-    <h1>Störung melden</h1>
-    <p>Im Störungsfall zählt Klarheit. Mit diesen Angaben können wir schneller verstehen, was passiert ist und was als Nächstes sinnvoll ist.</p>
+
+    <p class="eyebrow">
+      03 · STÖRUNG / NOTDIENST
+    </p>
+
+    <h1>
+      Störung melden
+    </h1>
+
+    <p>
+      Im Störungsfall zählt Klarheit. Mit diesen Angaben können wir schneller
+      verstehen, was passiert ist und was als Nächstes sinnvoll ist.
+    </p>
+
   </div>
+
 </section>
+
 
 <main class="form-main">
-  <div class="notice urgent"><strong>Akute Störung?</strong> Wenn die Anlage komplett ausgefallen ist oder eine dringende Situation besteht, empfehlen wir zusätzlich die telefonische Kontaktaufnahme.</div>
-  <form id="serviceForm" novalidate>
-    
-<section class="form-card">
-  <h2>Kontaktdaten</h2>
-  <p class="hint">Damit wir wissen, wen wir bei Rückfragen erreichen dürfen.</p>
-  <div class="grid-2">
-    <div class="field"><label>Firma / Privatperson *</label><select required name="kundentyp"><option value="">Bitte wählen</option><option>Privatperson</option><option>Firma</option><option>Verwaltung</option><option>Installateur</option><option>Sonstiges</option></select></div>
-    <div class="field"><label>Firma</label><input name="firma" autocomplete="organization"></div>
-    <div class="field"><label>Vorname *</label><input required name="vorname" autocomplete="given-name"></div>
-    <div class="field"><label>Name *</label><input required name="name" autocomplete="family-name"></div>
-    <div class="field"><label>E-Mail *</label><input required type="email" name="email" autocomplete="email"></div>
-    <div class="field"><label>Telefon *</label><input required type="tel" name="telefon" autocomplete="tel"></div>
-  </div>
-</section>
+
+<div class="notice urgent">
+  <strong>Akute Störung?</strong>
+  Wenn die Anlage komplett ausgefallen ist oder eine dringende Situation besteht,
+  empfehlen wir zusätzlich die telefonische Kontaktaufnahme.
+</div>
+
+
+<form id="serviceForm" novalidate>
+
+
+<!-- =========================================================
+     AUFTRAGGEBER / RECHNUNGSADRESSE
+========================================================= -->
 
 <section class="form-card">
-  <h2>Standort der Anlage</h2>
-  <p class="hint">Bitte die Adresse angeben, an der die Wärmepumpe tatsächlich steht.</p>
-  <div class="grid-2">
-    <div class="field full"><label>Strasse / Nr. *</label><input required name="standort_strasse" autocomplete="street-address"></div>
-    <div class="field"><label>PLZ *</label><input required name="standort_plz" inputmode="numeric"></div>
-    <div class="field"><label>Ort *</label><input required name="standort_ort"></div>
-    <div class="field full"><label>Gebäude / Gebäudeteil / Zugangshinweis</label><input name="standort_zugang" placeholder="z. B. Technikraum UG, Zugang über Tiefgarage"></div>
-  </div>
-</section>
 
-<section class="form-card">
-  <h2>Was funktioniert nicht?</h2>
-  <p class="hint">Mehrfachauswahl möglich.</p>
-  <div class="choice-grid cards">
-    <label class="choice"><input type="checkbox" name="stoerung" value="Keine Heizung"><span>Keine Heizung</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Kein Warmwasser"><span>Kein Warmwasser</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Wärmepumpe steht"><span>Wärmepumpe steht</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Ungewöhnliche Geräusche"><span>Ungewöhnliche Geräusche</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Wasser/Leckage"><span>Wasser / Leckage</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Vereisung"><span>Vereisung</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Elektrische Störung"><span>Elektrische Störung</span></label>
-    <label class="choice"><input type="checkbox" name="stoerung" value="Andere Störung"><span>Andere Störung</span></label>
-  </div>
-</section>
-<section class="form-card">
-  <h2>Anlage & Fehlerbild</h2>
-  <div class="grid-2">
-    <div class="field"><label>Hersteller</label><input name="hersteller"></div>
-    <div class="field"><label>Modell / Typ</label><input name="modell"></div>
-    <div class="field"><label>Fehlercode / Displaymeldung</label><input name="fehlercode"></div>
-    <div class="field"><label>Seit wann besteht die Störung?</label><input name="seit_wann" placeholder="z. B. seit heute Morgen"></div>
-    <div class="field"><label>Anlage komplett ausgefallen?</label><select name="ausfall"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option><option>Teilweise</option></select></div>
-    <div class="field"><label>Reset bereits versucht?</label><select name="reset"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></div>
-    <div class="field full"><label>Kurze Beschreibung</label><textarea name="beschreibung"></textarea></div>
-  </div>
-</section>
-<section class="form-card">
-  <h2>Fotos</h2>
-  <p class="hint">Ein Foto des Displays oder Fehlercodes hilft oft enorm.</p>
-  <div class="grid-2">
-    <div class="field upload"><label>Display / Fehlermeldung</label><input type="file" accept="image/*,.pdf" name="display"></div>
-    <div class="field upload"><label>Wärmepumpe / weitere Fotos</label><input type="file" multiple accept="image/*,.pdf" name="fotos"></div>
-  </div>
-</section>
-<section class="form-card">
-  <h2>Dringlichkeit</h2>
-  <div class="choice-grid">
-    <label class="choice"><input type="radio" required name="dringlichkeit" value="Normal"><span>Normal</span></label>
-    <label class="choice"><input type="radio" required name="dringlichkeit" value="Dringend"><span>Dringend</span></label>
-    <label class="choice"><input type="radio" required name="dringlichkeit" value="Komplett ausgefallen"><span>Anlage komplett ausgefallen</span></label>
-  </div>
-</section>
+  <h2>Auftraggeber & Rechnungsadresse</h2>
 
-    <div class="form-actions">
-      <p class="privacy">Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung Ihrer Anfrage. Pflichtfelder sind mit * gekennzeichnet.</p>
-      <button class="submit-btn" type="submit">Störung melden →</button>
+  <p class="hint">
+    Diese Angaben verwenden wir für die Auftragsabwicklung und Rechnungsstellung.
+  </p>
+
+  <div class="grid-2">
+
+    <div class="field">
+
+      <label>Auftraggeber *</label>
+
+      <select required name="kundentyp">
+
+        <option value="">Bitte wählen</option>
+        <option>Privatperson</option>
+        <option>Firma</option>
+        <option>Verwaltung</option>
+        <option>Installateur</option>
+        <option>Sonstiges</option>
+
+      </select>
+
     </div>
-  </form>
-  <section class="success" id="success">
-    <h2>Anfrage erhalten.</h2>
-    <p>Vielen Dank. Die Angaben wurden erfasst. Wir melden uns bei Ihnen, sobald wir die Anfrage geprüft haben.</p>
-  </section>
+
+
+    <div class="field">
+
+      <label>Firma</label>
+
+      <input
+        name="firma"
+        autocomplete="organization"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Vorname *</label>
+
+      <input
+        required
+        name="vorname"
+        autocomplete="given-name"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Name *</label>
+
+      <input
+        required
+        name="name"
+        autocomplete="family-name"
+      >
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>Strasse / Nr. *</label>
+
+      <input
+        required
+        name="auftraggeber_strasse"
+        autocomplete="street-address"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>PLZ *</label>
+
+      <input
+        required
+        name="auftraggeber_plz"
+        inputmode="numeric"
+        maxlength="4"
+        autocomplete="postal-code"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Ort *</label>
+
+      <input
+        required
+        name="auftraggeber_ort"
+        autocomplete="address-level2"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     KONTAKT FÜR RÜCKFRAGEN
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Kontakt für Rückfragen</h2>
+
+  <p class="hint">
+    Diese Person kontaktieren wir bei Rückfragen zur Störung.
+  </p>
+
+  <div class="grid-2">
+
+    <div class="field">
+
+      <label>Vorname *</label>
+
+      <input
+        required
+        name="kontakt_vorname"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Name *</label>
+
+      <input
+        required
+        name="kontakt_name"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>E-Mail *</label>
+
+      <input
+        required
+        type="email"
+        name="kontakt_email"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Telefon *</label>
+
+      <input
+        required
+        type="tel"
+        name="kontakt_telefon"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     KONTAKTPERSON VOR ORT
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Kontaktperson vor Ort</h2>
+
+  <p class="hint">
+    Wer ist vor Ort erreichbar, falls ein Einsatz notwendig ist?
+  </p>
+
+
+  <label class="check">
+
+    <input
+      type="checkbox"
+      name="kontakt_vor_ort_gleich"
+      value="Ja"
+      checked
+    >
+
+    <span>
+      Gleich wie Kontakt für Rückfragen
+    </span>
+
+  </label>
+
+
+  <div class="grid-2" style="margin-top:20px;">
+
+    <div class="field">
+
+      <label>Vorname *</label>
+
+      <input
+        required
+        name="vorort_vorname"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Name *</label>
+
+      <input
+        required
+        name="vorort_name"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Telefon *</label>
+
+      <input
+        required
+        type="tel"
+        name="vorort_telefon"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>E-Mail</label>
+
+      <input
+        type="email"
+        name="vorort_email"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     STANDORT DER ANLAGE
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Standort der Anlage</h2>
+
+  <p class="hint">
+    Adresse, an der die Wärmepumpe tatsächlich installiert ist.
+  </p>
+
+
+  <label class="check">
+
+    <input
+      type="checkbox"
+      name="standort_gleich"
+      value="Ja"
+      checked
+    >
+
+    <span>
+      Gleiche Adresse wie Auftraggeber / Rechnungsadresse
+    </span>
+
+  </label>
+
+
+  <div class="grid-2" style="margin-top:20px;">
+
+    <div class="field full">
+
+      <label>Strasse / Nr. *</label>
+
+      <input
+        required
+        name="standort_strasse"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>PLZ *</label>
+
+      <input
+        required
+        name="standort_plz"
+        inputmode="numeric"
+        maxlength="4"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Ort *</label>
+
+      <input
+        required
+        name="standort_ort"
+      >
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>
+        Gebäude / Gebäudeteil / Zugangshinweis
+      </label>
+
+      <input
+        name="standort_zugang"
+        placeholder="z. B. Technikraum UG, Zugang über Tiefgarage"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FEHLERART
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Was funktioniert nicht?</h2>
+
+  <p class="hint">
+    Mehrfachauswahl möglich.
+  </p>
+
+
+  <div class="choice-grid cards">
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Keine Heizung"
+      >
+
+      <span>Keine Heizung</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Kein Warmwasser"
+      >
+
+      <span>Kein Warmwasser</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Wärmepumpe steht"
+      >
+
+      <span>Wärmepumpe steht</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Ungewöhnliche Geräusche"
+      >
+
+      <span>Ungewöhnliche Geräusche</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Wasser / Leckage"
+      >
+
+      <span>Wasser / Leckage</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Vereisung"
+      >
+
+      <span>Vereisung</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Elektrische Störung"
+      >
+
+      <span>Elektrische Störung</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="checkbox"
+        name="stoerung"
+        value="Andere Störung"
+      >
+
+      <span>Andere Störung</span>
+
+    </label>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ANLAGE & FEHLERBILD
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Anlage & Fehlerbild</h2>
+
+  <p class="hint">
+    Je genauer die Angaben sind, desto besser können wir die Störung vorab einordnen.
+  </p>
+
+
+  <div class="grid-2">
+
+    <div class="field">
+
+      <label>Hersteller *</label>
+
+      <input
+        required
+        name="hersteller"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Modell / Typ *</label>
+
+      <input
+        required
+        name="modell"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Seriennummer</label>
+
+      <input
+        name="seriennummer"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Fehlercode / Displaymeldung</label>
+
+      <input
+        name="fehlercode"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Seit wann besteht die Störung?</label>
+
+      <input
+        name="seit_wann"
+        placeholder="z. B. seit heute Morgen"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Anlage komplett ausgefallen?</label>
+
+      <select name="ausfall">
+
+        <option value="">Bitte wählen</option>
+        <option>Ja</option>
+        <option>Nein</option>
+        <option>Teilweise</option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Reset bereits versucht?</label>
+
+      <select name="reset">
+
+        <option value="">Bitte wählen</option>
+        <option>Ja</option>
+        <option>Nein</option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>Fehler tritt auf</label>
+
+      <select name="fehler_haeufigkeit">
+
+        <option value="">Bitte wählen</option>
+        <option>Dauerhaft</option>
+        <option>Mehrmals täglich</option>
+        <option>Unregelmässig</option>
+        <option>Einmalig</option>
+        <option>Unbekannt</option>
+
+      </select>
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>Kurze Beschreibung</label>
+
+      <textarea
+        name="beschreibung"
+        placeholder="Was ist passiert? Was funktioniert noch? Gab es vorher Auffälligkeiten?"
+      ></textarea>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DRINGLICHKEIT
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Dringlichkeit</h2>
+
+  <p class="hint">
+    Bitte den aktuellen Zustand möglichst realistisch einschätzen.
+  </p>
+
+
+  <div class="choice-grid">
+
+    <label class="choice">
+
+      <input
+        type="radio"
+        required
+        name="dringlichkeit"
+        value="Normal"
+      >
+
+      <span>Normal</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="radio"
+        required
+        name="dringlichkeit"
+        value="Dringend"
+      >
+
+      <span>Dringend</span>
+
+    </label>
+
+
+    <label class="choice">
+
+      <input
+        type="radio"
+        required
+        name="dringlichkeit"
+        value="Anlage komplett ausgefallen"
+      >
+
+      <span>Anlage komplett ausgefallen</span>
+
+    </label>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOTOS
+========================================================= -->
+
+<section class="form-card">
+
+  <h2>Fotos & Unterlagen</h2>
+
+  <p class="hint">
+    Ein Foto des Displays, des Fehlercodes oder der betroffenen Anlagenteile hilft oft enorm.
+  </p>
+
+
+  <div class="grid-2">
+
+    <div class="field upload">
+
+      <label>Display / Fehlermeldung</label>
+
+      <input
+        type="file"
+        accept="image/*,.pdf"
+        name="display"
+      >
+
+    </div>
+
+
+    <div class="field upload">
+
+      <label>Wärmepumpe / weitere Fotos</label>
+
+      <input
+        type="file"
+        multiple
+        accept="image/*,.pdf"
+        name="fotos"
+      >
+
+    </div>
+
+
+    <div class="field upload">
+
+      <label>Typenschild</label>
+
+      <input
+        type="file"
+        accept="image/*,.pdf"
+        name="typenschild"
+      >
+
+    </div>
+
+
+    <div class="field upload">
+
+      <label>Weitere Unterlagen</label>
+
+      <input
+        type="file"
+        multiple
+        accept="image/*,.pdf"
+        name="unterlagen"
+      >
+
+    </div>
+
+
+    <div class="field full">
+
+      <label>Weitere Bemerkungen</label>
+
+      <textarea
+        name="bemerkungen"
+      ></textarea>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ABSENDEN
+========================================================= -->
+
+<div class="form-actions">
+
+  <p class="privacy">
+    Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung Ihrer Anfrage.
+    Pflichtfelder sind mit * gekennzeichnet.
+  </p>
+
+
+  <button
+    class="submit-btn"
+    type="submit"
+  >
+    Störung melden →
+  </button>
+
+</div>
+
+
+</form>
+
+
+
+<section
+  class="success"
+  id="success"
+>
+
+  <h2>Anfrage erhalten.</h2>
+
+  <p>
+    Vielen Dank. Die Angaben wurden erfasst.
+    Wir melden uns bei Ihnen, sobald wir die Anfrage geprüft haben.
+  </p>
+
+</section>
+
+
 </main>
 
+
+
 <footer class="form-footer">
-  <span>HeatIQ</span><span>info@heatiq.ch</span>
+
+  <span>HeatIQ</span>
+
+  <span>info@heatiq.ch</span>
+
 </footer>
+
+
+
+<!-- =========================================================
+     PLZ + ÜBERNAHMEFUNKTIONEN
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+
+  let plzData = {};
+
+
+  try {
+
+    const response =
+      await fetch("/data/plz.json");
+
+
+    if (!response.ok) {
+      throw new Error(
+        "PLZ-Datei konnte nicht geladen werden."
+      );
+    }
+
+
+    plzData =
+      await response.json();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Fehler beim Laden der PLZ-Daten:",
+      error
+    );
+
+  }
+
+
+
+  function clean(value) {
+
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+  }
+
+
+
+  function findOrtByPlz(plz) {
+
+    const entries =
+      plzData[String(plz).trim()];
+
+
+    if (
+      !Array.isArray(entries) ||
+      entries.length === 0
+    ) {
+      return null;
+    }
+
+
+    return entries[0].name || null;
+
+  }
+
+
+
+  function findPlzByOrt(ort) {
+
+    const gesucht =
+      clean(ort);
+
+
+    if (!gesucht) {
+      return null;
+    }
+
+
+    for (
+      const [plz, entries]
+      of Object.entries(plzData)
+    ) {
+
+      if (!Array.isArray(entries)) {
+        continue;
+      }
+
+
+      const match =
+        entries.find(
+          entry =>
+            clean(entry.name) === gesucht
+        );
+
+
+      if (match) {
+        return plz;
+      }
+
+    }
+
+
+    return null;
+
+  }
+
+
+
+  function connectPlzOrt(
+    plzInput,
+    ortInput
+  ) {
+
+    if (
+      !plzInput ||
+      !ortInput
+    ) {
+      return;
+    }
+
+
+
+    plzInput.addEventListener(
+      "input",
+      () => {
+
+        const plz =
+          plzInput.value.trim();
+
+
+        if (plz.length !== 4) {
+          return;
+        }
+
+
+        const ort =
+          findOrtByPlz(plz);
+
+
+        if (ort) {
+
+          ortInput.value =
+            ort;
+
+
+          ortInput.dispatchEvent(
+            new Event(
+              "input",
+              { bubbles:true }
+            )
+          );
+
+        }
+
+      }
+    );
+
+
+
+    ortInput.addEventListener(
+      "change",
+      () => {
+
+        const ort =
+          ortInput.value.trim();
+
+
+        if (!ort) {
+          return;
+        }
+
+
+        const plz =
+          findPlzByOrt(ort);
+
+
+        if (plz) {
+
+          plzInput.value =
+            plz;
+
+
+          plzInput.dispatchEvent(
+            new Event(
+              "input",
+              { bubbles:true }
+            )
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  connectPlzOrt(
+
+    document.querySelector(
+      '[name="auftraggeber_plz"]'
+    ),
+
+    document.querySelector(
+      '[name="auftraggeber_ort"]'
+    )
+
+  );
+
+
+  connectPlzOrt(
+
+    document.querySelector(
+      '[name="standort_plz"]'
+    ),
+
+    document.querySelector(
+      '[name="standort_ort"]'
+    )
+
+  );
+
+
+
+  /* =========================================================
+     KONTAKTPERSON VOR ORT
+  ========================================================= */
+
+  const kontaktGleich =
+    document.querySelector(
+      '[name="kontakt_vor_ort_gleich"]'
+    );
+
+
+  const kontaktQuelle = {
+
+    vorname:
+      document.querySelector(
+        '[name="kontakt_vorname"]'
+      ),
+
+    name:
+      document.querySelector(
+        '[name="kontakt_name"]'
+      ),
+
+    telefon:
+      document.querySelector(
+        '[name="kontakt_telefon"]'
+      ),
+
+    email:
+      document.querySelector(
+        '[name="kontakt_email"]'
+      )
+
+  };
+
+
+  const kontaktZiel = {
+
+    vorname:
+      document.querySelector(
+        '[name="vorort_vorname"]'
+      ),
+
+    name:
+      document.querySelector(
+        '[name="vorort_name"]'
+      ),
+
+    telefon:
+      document.querySelector(
+        '[name="vorort_telefon"]'
+      ),
+
+    email:
+      document.querySelector(
+        '[name="vorort_email"]'
+      )
+
+  };
+
+
+
+  function updateKontaktVorOrt() {
+
+    if (!kontaktGleich) {
+      return;
+    }
+
+
+    const gleich =
+      kontaktGleich.checked;
+
+
+    Object.keys(
+      kontaktZiel
+    ).forEach(key => {
+
+      const ziel =
+        kontaktZiel[key];
+
+
+      const quelle =
+        kontaktQuelle[key];
+
+
+      if (!ziel) {
+        return;
+      }
+
+
+      if (
+        gleich &&
+        quelle
+      ) {
+
+        ziel.value =
+          quelle.value;
+
+      }
+
+
+      ziel.readOnly =
+        gleich;
+
+
+      ziel.classList.toggle(
+        "auto-filled",
+        gleich
+      );
+
+    });
+
+  }
+
+
+
+  kontaktGleich?.addEventListener(
+    "change",
+    updateKontaktVorOrt
+  );
+
+
+  Object.values(
+    kontaktQuelle
+  ).forEach(input => {
+
+    input?.addEventListener(
+      "input",
+      () => {
+
+        if (
+          kontaktGleich?.checked
+        ) {
+
+          updateKontaktVorOrt();
+
+        }
+
+      }
+    );
+
+  });
+
+
+  updateKontaktVorOrt();
+
+
+
+  /* =========================================================
+     STANDORT = AUFTRAGGEBER
+  ========================================================= */
+
+  const standortGleich =
+    document.querySelector(
+      '[name="standort_gleich"]'
+    );
+
+
+  const adresseQuelle = {
+
+    strasse:
+      document.querySelector(
+        '[name="auftraggeber_strasse"]'
+      ),
+
+    plz:
+      document.querySelector(
+        '[name="auftraggeber_plz"]'
+      ),
+
+    ort:
+      document.querySelector(
+        '[name="auftraggeber_ort"]'
+      )
+
+  };
+
+
+  const adresseZiel = {
+
+    strasse:
+      document.querySelector(
+        '[name="standort_strasse"]'
+      ),
+
+    plz:
+      document.querySelector(
+        '[name="standort_plz"]'
+      ),
+
+    ort:
+      document.querySelector(
+        '[name="standort_ort"]'
+      )
+
+  };
+
+
+
+  function updateStandort() {
+
+    if (!standortGleich) {
+      return;
+    }
+
+
+    const gleich =
+      standortGleich.checked;
+
+
+    Object.keys(
+      adresseZiel
+    ).forEach(key => {
+
+      const ziel =
+        adresseZiel[key];
+
+
+      const quelle =
+        adresseQuelle[key];
+
+
+      if (!ziel) {
+        return;
+      }
+
+
+      if (
+        gleich &&
+        quelle
+      ) {
+
+        ziel.value =
+          quelle.value;
+
+      }
+
+
+      ziel.readOnly =
+        gleich;
+
+
+      ziel.classList.toggle(
+        "auto-filled",
+        gleich
+      );
+
+    });
+
+  }
+
+
+
+  standortGleich?.addEventListener(
+    "change",
+    updateStandort
+  );
+
+
+  Object.values(
+    adresseQuelle
+  ).forEach(input => {
+
+    input?.addEventListener(
+      "input",
+      () => {
+
+        if (
+          standortGleich?.checked
+        ) {
+
+          updateStandort();
+
+        }
+
+      }
+    );
+
+  });
+
+
+  updateStandort();
+
+
+
+  /* =========================================================
+     VOR ABSENDEN SYNCHRONISIEREN
+  ========================================================= */
+
+  const form =
+    document.getElementById(
+      "serviceForm"
+    );
+
+
+  form?.addEventListener(
+    "submit",
+    () => {
+
+      if (
+        kontaktGleich?.checked
+      ) {
+
+        updateKontaktVorOrt();
+
+      }
+
+
+      if (
+        standortGleich?.checked
+      ) {
+
+        updateStandort();
+
+      }
+
+    },
+    true
+  );
+
+
+});
+
+</script>
+
+
+
 <script src="forms.js"></script>
+
+
 </body>
 </html>
