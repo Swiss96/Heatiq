@@ -112,9 +112,23 @@ textarea{min-height:130px;resize:vertical}
   .privacy{margin:0}
   .submit-btn{width:100%}
 }
-/* Wunschtermin – Mobile */
+/* Wunschtermin */
+.appointment-dates {
+  gap: 18px;
+}
+
+.appointment-dates .field {
+  min-width: 0;
+}
+
+.appointment-dates input,
+.appointment-dates select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 @media (max-width: 700px) {
-  .appointment-grid {
-    grid-template-columns: 1fr !important;
+  .appointment-dates {
+    grid-template-columns: 1fr;
   }
 }
