@@ -88,28 +88,20 @@ function values(form, key) {
 
 
 function dateValue(form, key) {
-  return formatDate(
-    value(form, key)
-  );
+  return formatDate(value(form, key));
 }
 
 
 function fullName(form, prefix = "") {
-  const first =
-    value(
-      form,
-      prefix
-        ? `${prefix}_vorname`
-        : "vorname"
-    );
+  const first = value(
+    form,
+    prefix ? `${prefix}_vorname` : "vorname"
+  );
 
-  const last =
-    value(
-      form,
-      prefix
-        ? `${prefix}_name`
-        : "name"
-    );
+  const last = value(
+    form,
+    prefix ? `${prefix}_name` : "name"
+  );
 
   return [first, last]
     .filter(Boolean)
@@ -132,6 +124,7 @@ function row(label, val) {
 
   return `
     <tr>
+
       <td style="
         width:38%;
         padding:9px 12px 9px 0;
@@ -154,6 +147,7 @@ function row(label, val) {
       ">
         ${escapeHtml(val)}
       </td>
+
     </tr>
   `;
 }
@@ -262,6 +256,7 @@ function mailWrapper(
     <!doctype html>
 
     <html>
+
     <body style="
       margin:0;
       padding:0;
@@ -281,10 +276,7 @@ function mailWrapper(
           color:#111718;
         ">
 
-          ${headerBlock(
-            title,
-            reference
-          )}
+          ${headerBlock(title, reference)}
 
           <div style="
             padding:22px 30px;
@@ -340,6 +332,7 @@ function mailWrapper(
       </div>
 
     </body>
+
     </html>
   `;
 }
@@ -460,11 +453,7 @@ function urgencyCard(level) {
       <div style="
         font-size:15px;
         font-weight:800;
-        color:${
-          critical
-            ? "#9b2e2e"
-            : "#111718"
-        };
+        color:${critical ? "#9b2e2e" : "#111718"};
       ">
         ${escapeHtml(level)}
       </div>
@@ -475,7 +464,7 @@ function urgencyCard(level) {
 
 
 /* =========================================================
-   GEMEINSAME KONTAKT-BEREICHE
+   GEMEINSAME KONTAKTBEREICHE
    ========================================================= */
 
 function buildAuftraggeber(form, number = "01") {
@@ -500,23 +489,14 @@ function buildAuftraggeber(form, number = "01") {
 
       row(
         "Strasse / Nr.",
-        value(
-          form,
-          "auftraggeber_strasse"
-        )
+        value(form, "auftraggeber_strasse")
       ) +
 
       row(
         "PLZ / Ort",
         [
-          value(
-            form,
-            "auftraggeber_plz"
-          ),
-          value(
-            form,
-            "auftraggeber_ort"
-          )
+          value(form, "auftraggeber_plz"),
+          value(form, "auftraggeber_ort")
         ]
           .filter(Boolean)
           .join(" ")
@@ -533,26 +513,17 @@ function buildKontakt(form, number = "02") {
     table(
       row(
         "Name",
-        fullName(
-          form,
-          "kontakt"
-        )
+        fullName(form, "kontakt")
       ) +
 
       row(
         "Telefon",
-        value(
-          form,
-          "kontakt_telefon"
-        )
+        value(form, "kontakt_telefon")
       ) +
 
       row(
         "E-Mail",
-        value(
-          form,
-          "kontakt_email"
-        )
+        value(form, "kontakt_email")
       )
     )
   );
@@ -561,10 +532,7 @@ function buildKontakt(form, number = "02") {
 
 function buildVorOrt(form, number = "03") {
   const same =
-    value(
-      form,
-      "kontakt_vor_ort_gleich"
-    ) === "Ja";
+    value(form, "kontakt_vor_ort_gleich") === "Ja";
 
   return section(
     `${number} · Kontaktperson vor Ort`,
@@ -578,26 +546,17 @@ function buildVorOrt(form, number = "03") {
     table(
       row(
         "Name",
-        fullName(
-          form,
-          "vorort"
-        )
+        fullName(form, "vorort")
       ) +
 
       row(
         "Telefon",
-        value(
-          form,
-          "vorort_telefon"
-        )
+        value(form, "vorort_telefon")
       ) +
 
       row(
         "E-Mail",
-        value(
-          form,
-          "vorort_email"
-        )
+        value(form, "vorort_email")
       )
     )
   );
@@ -606,10 +565,7 @@ function buildVorOrt(form, number = "03") {
 
 function buildStandort(form, number = "04") {
   const same =
-    value(
-      form,
-      "standort_gleich"
-    ) === "Ja";
+    value(form, "standort_gleich") === "Ja";
 
   return section(
     `${number} · Standort der Anlage`,
@@ -623,23 +579,14 @@ function buildStandort(form, number = "04") {
     table(
       row(
         "Strasse / Nr.",
-        value(
-          form,
-          "standort_strasse"
-        )
+        value(form, "standort_strasse")
       ) +
 
       row(
         "PLZ / Ort",
         [
-          value(
-            form,
-            "standort_plz"
-          ),
-          value(
-            form,
-            "standort_ort"
-          )
+          value(form, "standort_plz"),
+          value(form, "standort_ort")
         ]
           .filter(Boolean)
           .join(" ")
@@ -647,13 +594,277 @@ function buildStandort(form, number = "04") {
 
       row(
         "Zugangshinweis",
-        value(
-          form,
-          "standort_zugang"
-        )
+        value(form, "standort_zugang")
       )
     )
   );
+}
+
+
+/* =========================================================
+   KALENDER / ICS
+   ========================================================= */
+
+function escapeIcs(value = "") {
+  return String(value)
+    .replaceAll("\\", "\\\\")
+    .replaceAll("\r\n", "\\n")
+    .replaceAll("\n", "\\n")
+    .replaceAll(",", "\\,")
+    .replaceAll(";", "\\;");
+}
+
+
+function icsDate(value) {
+  if (!value) return "";
+
+  const match = String(value).match(
+    /^(\d{4})-(\d{2})-(\d{2})$/
+  );
+
+  if (!match) return "";
+
+  return `${match[1]}${match[2]}${match[3]}`;
+}
+
+
+function addOneDay(value) {
+  if (!value) return "";
+
+  const match = String(value).match(
+    /^(\d{4})-(\d{2})-(\d{2})$/
+  );
+
+  if (!match) return "";
+
+  const date = new Date(
+    Date.UTC(
+      Number(match[1]),
+      Number(match[2]) - 1,
+      Number(match[3])
+    )
+  );
+
+  date.setUTCDate(
+    date.getUTCDate() + 1
+  );
+
+  return date
+    .toISOString()
+    .slice(0, 10);
+}
+
+
+function makeIcsTimestamp() {
+  return new Date()
+    .toISOString()
+    .replace(/[-:]/g, "")
+    .replace(/\.\d{3}Z$/, "Z");
+}
+
+
+function buildCalendarAttachment(
+  form,
+  type,
+  reference
+) {
+  if (
+    type !== "inbetriebnahme" &&
+    type !== "wartung"
+  ) {
+    return null;
+  }
+
+
+  const termin =
+    value(form, "termin1");
+
+  if (!termin) {
+    return null;
+  }
+
+
+  const startDate =
+    icsDate(termin);
+
+  const endDate =
+    icsDate(
+      addOneDay(termin)
+    );
+
+  if (
+    !startDate ||
+    !endDate
+  ) {
+    return null;
+  }
+
+
+  const firma =
+    value(form, "firma");
+
+  const person =
+    fullName(form);
+
+  const kunde =
+    firma ||
+    person ||
+    "Kunde";
+
+  const ort =
+    value(form, "standort_ort");
+
+  const strasse =
+    value(form, "standort_strasse");
+
+  const plz =
+    value(form, "standort_plz");
+
+
+  const location =
+    [
+      strasse,
+      [plz, ort]
+        .filter(Boolean)
+        .join(" ")
+    ]
+      .filter(Boolean)
+      .join(", ");
+
+
+  const label =
+    type === "inbetriebnahme"
+      ? "IBN"
+      : "Wartung";
+
+
+  const title =
+    [
+      `VORBEHALT · ${label}`,
+      kunde,
+      ort
+    ]
+      .filter(Boolean)
+      .join(" · ");
+
+
+  const descriptionLines = [
+    "VORLÄUFIGER TERMIN / VORBEHALT",
+    "Der Termin ist noch nicht definitiv bestätigt.",
+    "",
+    `HeatIQ Referenz: ${reference}`,
+
+    value(form, "hersteller")
+      ? `Hersteller: ${value(form, "hersteller")}`
+      : "",
+
+    value(form, "modell")
+      ? `Modell: ${value(form, "modell")}`
+      : "",
+
+    value(form, "seriennummer")
+      ? `Seriennummer: ${value(form, "seriennummer")}`
+      : "",
+
+    fullName(form, "kontakt")
+      ? `Kontakt: ${fullName(form, "kontakt")}`
+      : "",
+
+    value(form, "kontakt_telefon")
+      ? `Telefon: ${value(form, "kontakt_telefon")}`
+      : "",
+
+    value(form, "kontakt_email")
+      ? `E-Mail: ${value(form, "kontakt_email")}`
+      : "",
+
+    location
+      ? `Standort: ${location}`
+      : "",
+
+    value(form, "termin2")
+      ? `Ersatztermin: ${formatDate(value(form, "termin2"))}`
+      : "",
+
+    value(form, "dringlichkeit")
+      ? `Dringlichkeit: ${value(form, "dringlichkeit")}`
+      : "",
+
+    value(form, "bemerkungen")
+      ? `Bemerkungen: ${value(form, "bemerkungen")}`
+      : ""
+  ].filter(Boolean);
+
+
+  const description =
+    descriptionLines.join("\n");
+
+  const timestamp =
+    makeIcsTimestamp();
+
+  const uid =
+    `${reference}@heatiq.ch`;
+
+
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//HeatIQ//Auftragskalender//DE",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+
+    "BEGIN:VEVENT",
+
+    `UID:${escapeIcs(uid)}`,
+    `DTSTAMP:${timestamp}`,
+
+    `DTSTART;VALUE=DATE:${startDate}`,
+    `DTEND;VALUE=DATE:${endDate}`,
+
+    `SUMMARY:${escapeIcs(title)}`,
+
+    location
+      ? `LOCATION:${escapeIcs(location)}`
+      : "",
+
+    `DESCRIPTION:${escapeIcs(description)}`,
+
+    "STATUS:TENTATIVE",
+
+    /*
+     * Der Wunschtermin blockiert den Kalender noch nicht
+     * als definitiv beschäftigt.
+     */
+    "TRANSP:TRANSPARENT",
+
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ]
+    .filter(Boolean)
+    .join("\r\n");
+
+
+  const filename =
+    type === "inbetriebnahme"
+      ? `${reference}-Vorbehalt-IBN.ics`
+      : `${reference}-Vorbehalt-Wartung.ics`;
+
+
+  return {
+    content:
+      new TextEncoder().encode(ics),
+
+    filename,
+
+    type:
+      "text/calendar; charset=utf-8; method=PUBLISH",
+
+    disposition:
+      "attachment",
+
+    isCalendar:
+      true
+  };
 }
 
 
@@ -665,9 +876,9 @@ function buildInbetriebnahmeEmail(
   form,
   reference,
   selectedStatuses,
-  attachments
+  attachments,
+  hasCalendar
 ) {
-
   const auftraggeber =
     buildAuftraggeber(form, "01");
 
@@ -743,9 +954,7 @@ function buildInbetriebnahmeEmail(
       .map(label =>
         statusCard(
           label,
-          selectedStatuses.includes(
-            label
-          )
+          selectedStatuses.includes(label)
         )
       )
       .join("");
@@ -758,10 +967,8 @@ function buildInbetriebnahmeEmail(
 
 
   const dringlichkeit =
-    value(
-      form,
-      "dringlichkeit"
-    ) || "Normal";
+    value(form, "dringlichkeit") ||
+    "Normal";
 
 
   const termin = section(
@@ -770,25 +977,43 @@ function buildInbetriebnahmeEmail(
     table(
       row(
         "Gewünschter IBN-Termin",
-        dateValue(
-          form,
-          "termin1"
-        )
+        dateValue(form, "termin1")
       ) +
 
       row(
         "Ersatztermin",
-        dateValue(
-          form,
-          "termin2"
-        )
+        dateValue(form, "termin2")
       )
     ) +
 
-    urgencyCard(
-      dringlichkeit
+    urgencyCard(dringlichkeit) +
+
+    (
+      hasCalendar
+        ? `
+          <div style="
+            margin-top:12px;
+            padding:11px 13px;
+            border:1px solid #d8dfda;
+            border-radius:10px;
+            background:#f7f8f4;
+            color:#667274;
+            font-size:12px;
+            line-height:1.5;
+          ">
+            📅 Kalendervorbehalt als .ics-Datei angehängt.
+            Der Termin ist noch nicht definitiv bestätigt.
+          </div>
+        `
+        : ""
     )
   );
+
+
+  const customerAttachments =
+    attachments.filter(
+      item => !item.isCalendar
+    );
 
 
   const unterlagen = section(
@@ -797,8 +1022,8 @@ function buildInbetriebnahmeEmail(
     table(
       row(
         "Anhänge",
-        attachments.length
-          ? attachments
+        customerAttachments.length
+          ? customerAttachments
               .map(a => a.filename)
               .join(", ")
           : "Keine"
@@ -806,10 +1031,7 @@ function buildInbetriebnahmeEmail(
 
       row(
         "Bemerkungen",
-        value(
-          form,
-          "bemerkungen"
-        )
+        value(form, "bemerkungen")
       )
     )
   );
@@ -839,9 +1061,9 @@ function buildInbetriebnahmeEmail(
 function buildWartungEmail(
   form,
   reference,
-  attachments
+  attachments,
+  hasCalendar
 ) {
-
   const auftraggeber =
     buildAuftraggeber(form, "01");
 
@@ -896,34 +1118,23 @@ function buildWartungEmail(
 
       row(
         "Letzte Wartung",
-        dateValue(
-          form,
-          "letzte_wartung"
-        )
+        dateValue(form, "letzte_wartung")
       )
     )
   );
 
 
   const wartungsumfang =
-    values(
-      form,
-      "wartungsumfang"
-    );
+    values(form, "wartungsumfang");
 
 
   const wartungCards =
     wartungsumfang.length
-
       ? wartungsumfang
           .map(item =>
-            statusCard(
-              item,
-              true
-            )
+            statusCard(item, true)
           )
           .join("")
-
       : `
         <div style="
           color:#7a8583;
@@ -941,20 +1152,15 @@ function buildWartungEmail(
 
 
   const auffaelligkeiten =
-    values(
-      form,
-      "auffaelligkeit"
-    );
+    values(form, "auffaelligkeit");
 
 
   const auffaelligkeitCards =
     auffaelligkeiten.length
-
       ? auffaelligkeiten
           .map(item => {
             const good =
-              item ===
-              "Keine Auffälligkeiten";
+              item === "Keine Auffälligkeiten";
 
             return statusCard(
               item,
@@ -962,7 +1168,6 @@ function buildWartungEmail(
             );
           })
           .join("")
-
       : `
         <div style="
           color:#7a8583;
@@ -979,10 +1184,7 @@ function buildWartungEmail(
     auffaelligkeitCards +
 
     (
-      value(
-        form,
-        "beschreibung"
-      )
+      value(form, "beschreibung")
         ? `
           <div style="
             margin-top:16px;
@@ -990,10 +1192,7 @@ function buildWartungEmail(
             ${table(
               row(
                 "Beschreibung / Wünsche",
-                value(
-                  form,
-                  "beschreibung"
-                )
+                value(form, "beschreibung")
               )
             )}
           </div>
@@ -1004,10 +1203,8 @@ function buildWartungEmail(
 
 
   const dringlichkeit =
-    value(
-      form,
-      "dringlichkeit"
-    ) || "Flexibel";
+    value(form, "dringlichkeit") ||
+    "Flexibel";
 
 
   const termin = section(
@@ -1016,25 +1213,43 @@ function buildWartungEmail(
     table(
       row(
         "Gewünschter Wartungstermin",
-        dateValue(
-          form,
-          "termin1"
-        )
+        dateValue(form, "termin1")
       ) +
 
       row(
         "Ersatztermin",
-        dateValue(
-          form,
-          "termin2"
-        )
+        dateValue(form, "termin2")
       )
     ) +
 
-    urgencyCard(
-      dringlichkeit
+    urgencyCard(dringlichkeit) +
+
+    (
+      hasCalendar
+        ? `
+          <div style="
+            margin-top:12px;
+            padding:11px 13px;
+            border:1px solid #d8dfda;
+            border-radius:10px;
+            background:#f7f8f4;
+            color:#667274;
+            font-size:12px;
+            line-height:1.5;
+          ">
+            📅 Kalendervorbehalt als .ics-Datei angehängt.
+            Der Termin ist noch nicht definitiv bestätigt.
+          </div>
+        `
+        : ""
     )
   );
+
+
+  const customerAttachments =
+    attachments.filter(
+      item => !item.isCalendar
+    );
 
 
   const unterlagen = section(
@@ -1043,8 +1258,8 @@ function buildWartungEmail(
     table(
       row(
         "Anhänge",
-        attachments.length
-          ? attachments
+        customerAttachments.length
+          ? customerAttachments
               .map(a => a.filename)
               .join(", ")
           : "Keine"
@@ -1052,10 +1267,7 @@ function buildWartungEmail(
 
       row(
         "Weitere Bemerkungen",
-        value(
-          form,
-          "bemerkungen"
-        )
+        value(form, "bemerkungen")
       )
     )
   );
@@ -1088,7 +1300,6 @@ function buildStoerungEmail(
   reference,
   attachments
 ) {
-
   const auftraggeber =
     buildAuftraggeber(form, "01");
 
@@ -1103,24 +1314,16 @@ function buildStoerungEmail(
 
 
   const stoerungen =
-    values(
-      form,
-      "stoerung"
-    );
+    values(form, "stoerung");
 
 
   const stoerungCards =
     stoerungen.length
-
       ? stoerungen
           .map(item =>
-            statusCard(
-              item,
-              false
-            )
+            statusCard(item, false)
           )
           .join("")
-
       : `
         <div style="
           color:#7a8583;
@@ -1143,92 +1346,61 @@ function buildStoerungEmail(
     table(
       row(
         "Hersteller",
-        value(
-          form,
-          "hersteller"
-        )
+        value(form, "hersteller")
       ) +
 
       row(
         "Modell / Typ",
-        value(
-          form,
-          "modell"
-        )
+        value(form, "modell")
       ) +
 
       row(
         "Seriennummer",
-        value(
-          form,
-          "seriennummer"
-        )
+        value(form, "seriennummer")
       ) +
 
       row(
         "Fehlercode / Displaymeldung",
-        value(
-          form,
-          "fehlercode"
-        )
+        value(form, "fehlercode")
       ) +
 
       row(
         "Seit wann besteht die Störung?",
-        value(
-          form,
-          "seit_wann"
-        )
+        value(form, "seit_wann")
       ) +
 
       row(
         "Anlage komplett ausgefallen?",
-        value(
-          form,
-          "ausfall"
-        )
+        value(form, "ausfall")
       ) +
 
       row(
         "Reset bereits versucht?",
-        value(
-          form,
-          "reset"
-        )
+        value(form, "reset")
       ) +
 
       row(
         "Fehler tritt auf",
-        value(
-          form,
-          "fehler_haeufigkeit"
-        )
+        value(form, "fehler_haeufigkeit")
       ) +
 
       row(
         "Beschreibung",
-        value(
-          form,
-          "beschreibung"
-        )
+        value(form, "beschreibung")
       )
     )
   );
 
 
   const dringlichkeit =
-    value(
-      form,
-      "dringlichkeit"
-    ) || "Normal";
+    value(form, "dringlichkeit") ||
+    "Normal";
 
 
   const dringlichkeitSection =
     section(
       "07 · Dringlichkeit",
-      urgencyCard(
-        dringlichkeit
-      )
+      urgencyCard(dringlichkeit)
     );
 
 
@@ -1247,10 +1419,7 @@ function buildStoerungEmail(
 
       row(
         "Weitere Bemerkungen",
-        value(
-          form,
-          "bemerkungen"
-        )
+        value(form, "bemerkungen")
       )
     )
   );
@@ -1294,14 +1463,9 @@ function buildStandardEmail(
   reference,
   attachments
 ) {
-
   let rows = "";
 
-  for (
-    const [key, item]
-    of form.entries()
-  ) {
-
+  for (const [key, item] of form.entries()) {
     if (
       key === "_form_type" ||
       key === "website"
@@ -1309,9 +1473,7 @@ function buildStandardEmail(
       continue;
     }
 
-    if (
-      item instanceof File
-    ) {
+    if (item instanceof File) {
       continue;
     }
 
@@ -1345,9 +1507,7 @@ function buildStandardEmail(
           "Dateien",
           attachments.length
             ? attachments
-                .map(
-                  a => a.filename
-                )
+                .map(a => a.filename)
                 .join(", ")
             : "Keine"
         )
@@ -1368,7 +1528,6 @@ function buildText(
   selectedStatuses,
   attachments
 ) {
-
   const lines = [
     "HEATIQ",
     title,
@@ -1377,11 +1536,7 @@ function buildText(
   ];
 
 
-  for (
-    const [key, item]
-    of form.entries()
-  ) {
-
+  for (const [key, item] of form.entries()) {
     if (
       key === "_form_type" ||
       key === "website" ||
@@ -1402,8 +1557,7 @@ function buildText(
       key === "termin2" ||
       key === "letzte_wartung"
     ) {
-      val =
-        formatDate(val);
+      val = formatDate(val);
     }
 
 
@@ -1413,48 +1567,39 @@ function buildText(
   }
 
 
-  if (
-    selectedStatuses.length
-  ) {
-
+  if (selectedStatuses.length) {
     lines.push(
       "",
       "INSTALLATIONSSTATUS"
     );
 
-
-    for (
-      const label
-      of statusLabels
-    ) {
-
+    for (const label of statusLabels) {
       lines.push(
         `${
-          selectedStatuses.includes(
-            label
-          )
+          selectedStatuses.includes(label)
             ? "[X]"
             : "[ ]"
         } ${label}`
       );
-
     }
-
   }
+
+
+  const customerAttachments =
+    attachments.filter(
+      item => !item.isCalendar
+    );
 
 
   lines.push(
     "",
-    attachments.length
+    customerAttachments.length
       ? `Anhänge: ${
-          attachments
-            .map(
-              a => a.filename
-            )
+          customerAttachments
+            .map(a => a.filename)
             .join(", ")
         }`
       : "Anhänge: keine",
-
     "",
     "Automatisch erstellt über heatiq.ch"
   );
@@ -1472,16 +1617,14 @@ async function handleForm(
   request,
   env
 ) {
-
   const form =
     await request.formData();
 
 
   const type =
     String(
-      form.get(
-        "_form_type"
-      ) || "anfrage"
+      form.get("_form_type") ||
+      "anfrage"
     );
 
 
@@ -1503,12 +1646,10 @@ async function handleForm(
       form.get("website") || ""
     ).trim()
   ) {
-
     return Response.json({
-      success:true,
+      success: true,
       reference
     });
-
   }
 
 
@@ -1519,30 +1660,20 @@ async function handleForm(
   const selectedStatuses =
     form
       .getAll("status")
-      .map(
-        item =>
-          String(item)
-      );
+      .map(item => String(item));
 
 
   /* ---------------------------------------------------------
-     ATTACHMENTS
+     NORMALE UPLOADS
      --------------------------------------------------------- */
 
   const attachments = [];
 
 
-  for (
-    const [, item]
-    of form.entries()
-  ) {
-
-    if (
-      !(item instanceof File)
-    ) {
+  for (const [, item] of form.entries()) {
+    if (!(item instanceof File)) {
       continue;
     }
-
 
     if (
       !item.name ||
@@ -1557,15 +1688,11 @@ async function handleForm(
 
 
     const bytes =
-      new Uint8Array(
-        buffer
-      );
+      new Uint8Array(buffer);
 
 
     attachments.push({
-
-      content:
-        bytes,
+      content: bytes,
 
       filename:
         item.name,
@@ -1575,11 +1702,36 @@ async function handleForm(
         "application/octet-stream",
 
       disposition:
-        "attachment"
+        "attachment",
 
+      isCalendar:
+        false
     });
-
   }
+
+
+  /* ---------------------------------------------------------
+     KALENDER-VORBEHALT
+     Nur Inbetriebnahme + Wartung
+     --------------------------------------------------------- */
+
+  const calendarAttachment =
+    buildCalendarAttachment(
+      form,
+      type,
+      reference
+    );
+
+
+  if (calendarAttachment) {
+    attachments.push(
+      calendarAttachment
+    );
+  }
+
+
+  const hasCalendar =
+    Boolean(calendarAttachment);
 
 
   /* ---------------------------------------------------------
@@ -1587,17 +1739,11 @@ async function handleForm(
      --------------------------------------------------------- */
 
   const ort =
-    value(
-      form,
-      "standort_ort"
-    );
+    value(form, "standort_ort");
 
 
   const person =
-    value(
-      form,
-      "firma"
-    ) ||
+    value(form, "firma") ||
     fullName(form);
 
 
@@ -1608,23 +1754,17 @@ async function handleForm(
 
 
   if (person) {
-    subjectBits.push(
-      person
-    );
+    subjectBits.push(person);
   }
 
 
   if (ort) {
-    subjectBits.push(
-      ort
-    );
+    subjectBits.push(ort);
   }
 
 
   const subject =
-    subjectBits.join(
-      " | "
-    );
+    subjectBits.join(" | ");
 
 
   /* ---------------------------------------------------------
@@ -1634,51 +1774,37 @@ async function handleForm(
   let html;
 
 
-  if (
-    type ===
-    "inbetriebnahme"
-  ) {
-
+  if (type === "inbetriebnahme") {
     html =
       buildInbetriebnahmeEmail(
         form,
         reference,
         selectedStatuses,
-        attachments
+        attachments,
+        hasCalendar
       );
-
   }
 
-  else if (
-    type ===
-    "wartung"
-  ) {
-
+  else if (type === "wartung") {
     html =
       buildWartungEmail(
         form,
         reference,
-        attachments
+        attachments,
+        hasCalendar
       );
-
   }
 
-  else if (
-    type ===
-    "stoerung"
-  ) {
-
+  else if (type === "stoerung") {
     html =
       buildStoerungEmail(
         form,
         reference,
         attachments
       );
-
   }
 
   else {
-
     html =
       buildStandardEmail(
         form,
@@ -1686,12 +1812,11 @@ async function handleForm(
         reference,
         attachments
       );
-
   }
 
 
   /* ---------------------------------------------------------
-     TEXT
+     TEXTVERSION
      --------------------------------------------------------- */
 
   const text =
@@ -1705,18 +1830,12 @@ async function handleForm(
 
 
   /* ---------------------------------------------------------
-     REPLY TO
+     REPLY-TO
      --------------------------------------------------------- */
 
   const replyEmail =
-    value(
-      form,
-      "kontakt_email"
-    ) ||
-    value(
-      form,
-      "email"
-    );
+    value(form, "kontakt_email") ||
+    value(form, "email");
 
 
   /* ---------------------------------------------------------
@@ -1724,10 +1843,8 @@ async function handleForm(
      --------------------------------------------------------- */
 
   try {
-
     const result =
       await env.EMAIL.send({
-
         to:
           RECIPIENT,
 
@@ -1750,25 +1867,20 @@ async function handleForm(
         text,
 
         attachments
-
       });
 
 
     return Response.json({
-
-      success:true,
+      success: true,
 
       reference,
 
       messageId:
         result.messageId
-
     });
-
   }
 
   catch (error) {
-
     console.error(
       "Email sending failed",
       error?.code,
@@ -1778,8 +1890,7 @@ async function handleForm(
 
 
     return Response.json({
-
-      success:false,
+      success: false,
 
       error:
         error?.message ||
@@ -1788,13 +1899,10 @@ async function handleForm(
       code:
         error?.code ||
         null
-
     }, {
-      status:500
+      status: 500
     });
-
   }
-
 }
 
 
@@ -1803,56 +1911,39 @@ async function handleForm(
    ========================================================= */
 
 export default {
-
   async fetch(
     request,
     env
   ) {
-
     const url =
-      new URL(
-        request.url
-      );
+      new URL(request.url);
 
 
     if (
-      url.pathname ===
-        "/api/form" &&
-      request.method ===
-        "POST"
+      url.pathname === "/api/form" &&
+      request.method === "POST"
     ) {
-
       return handleForm(
         request,
         env
       );
-
     }
 
 
     if (
-      url.pathname
-        .startsWith(
-          "/api/"
-        )
+      url.pathname.startsWith("/api/")
     ) {
-
       return Response.json({
-
-        success:false,
-        error:"Not found"
-
+        success: false,
+        error: "Not found"
       }, {
-        status:404
+        status: 404
       });
-
     }
 
 
     return env.ASSETS.fetch(
       request
     );
-
   }
-
 };
