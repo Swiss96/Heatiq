@@ -21,194 +21,129 @@
     <p>
       Damit wir die Inbetriebnahme sinnvoll vorbereiten können,
       erfassen wir hier die wichtigsten Angaben zum Auftraggeber,
-      zur Anlage, zum Installationsstand und zum gewünschten Termin.
+      zum Anlagenstandort und zur Wärmepumpe.
     </p>
   </div>
 </section>
+
 
 <main class="form-main">
 
 <form id="serviceForm" novalidate>
 
-<!-- ========================================================= -->
-<!-- AUFTRAGGEBER -->
-<!-- ========================================================= -->
-
-<section class="form-card">
-
-  <h2>Auftraggeber & Rechnungsadresse</h2>
-
-  <p class="hint">
-    Diese Angaben bezeichnen den Auftraggeber und gleichzeitig die Rechnungsadresse.
-  </p>
-
-  <div class="grid-2">
-
-    <div class="field">
-      <label>Art des Auftraggebers *</label>
-      <select required name="kundentyp">
-        <option value="">Bitte wählen</option>
-        <option>Privatperson</option>
-        <option>Firma</option>
-        <option>Verwaltung</option>
-        <option>Installateur</option>
-        <option>Sonstiges</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Firma</label>
-      <input
-        name="firma"
-        autocomplete="organization"
-      >
-    </div>
-
-    <div class="field">
-      <label>Vorname *</label>
-      <input
-        required
-        name="vorname"
-        autocomplete="given-name"
-      >
-    </div>
-
-    <div class="field">
-      <label>Nachname *</label>
-      <input
-        required
-        name="name"
-        autocomplete="family-name"
-      >
-    </div>
-
-    <div class="field full">
-      <label>Strasse / Nr. *</label>
-      <input
-        required
-        name="auftraggeber_strasse"
-        autocomplete="street-address"
-      >
-    </div>
-
-    <div class="field">
-      <label>PLZ *</label>
-      <input
-        required
-        name="auftraggeber_plz"
-        inputmode="numeric"
-        autocomplete="postal-code"
-      >
-    </div>
-
-    <div class="field">
-      <label>Ort *</label>
-      <input
-        required
-        name="auftraggeber_ort"
-        autocomplete="address-level2"
-      >
-    </div>
-
-    <div class="field">
-      <label>E-Mail *</label>
-      <input
-        required
-        type="email"
-        name="email"
-        autocomplete="email"
-      >
-    </div>
-
-    <div class="field">
-      <label>Telefon *</label>
-      <input
-        required
-        type="tel"
-        name="telefon"
-        autocomplete="tel"
-      >
-    </div>
-
-    <div class="field full">
-      <label>Bestellnummer / Referenz</label>
-      <input
-        name="auftraggeber_referenz"
-        placeholder="z. B. Bestellnummer, Projekt-Nr. oder interne Referenz"
-      >
-    </div>
-
-  </div>
-
-</section>
-
 
 <!-- ========================================================= -->
-<!-- KONTAKT RÜCKFRAGEN -->
+<!-- AUFTRAGGEBER / RECHNUNGSADRESSE -->
 <!-- ========================================================= -->
 
 <section class="form-card">
 
-  <h2>Kontakt für Rückfragen zum Auftrag</h2>
+<h2>Auftraggeber & Rechnungsadresse</h2>
 
-  <p class="hint">
-    Diese Person kontaktieren wir bei technischen oder organisatorischen Rückfragen.
-  </p>
+<p class="hint">
+Diese Angaben verwenden wir für die Auftragsabwicklung und Rechnungsstellung.
+</p>
 
-  <label class="check" style="margin-bottom:22px;">
-    <input
-      type="checkbox"
-      id="kontaktGleichAuftraggeber"
-      name="kontakt_gleich_auftraggeber"
-      value="Ja"
-      checked
-    >
-    <span>Entspricht dem Auftraggeber</span>
-  </label>
+<div class="grid-2">
 
-  <div class="grid-2">
+<div class="field">
+<label>Auftraggeber *</label>
+<select required name="kundentyp">
+<option value="">Bitte wählen</option>
+<option>Privatperson</option>
+<option>Firma</option>
+<option>Verwaltung</option>
+<option>Installateur</option>
+<option>Sonstiges</option>
+</select>
+</div>
 
-    <div class="field">
-      <label>Vorname *</label>
-      <input
-        required
-        name="kontakt_vorname"
-        id="kontaktVorname"
-      >
-    </div>
+<div class="field">
+<label>Firma</label>
+<input name="firma" autocomplete="organization">
+</div>
 
-    <div class="field">
-      <label>Nachname *</label>
-      <input
-        required
-        name="kontakt_name"
-        id="kontaktName"
-      >
-    </div>
+<div class="field">
+<label>Vorname *</label>
+<input required name="vorname" autocomplete="given-name">
+</div>
 
-    <div class="field">
-      <label>E-Mail *</label>
-      <input
-        required
-        type="email"
-        name="kontakt_email"
-        id="kontaktEmail"
-      >
-    </div>
+<div class="field">
+<label>Name *</label>
+<input required name="name" autocomplete="family-name">
+</div>
 
-    <div class="field">
-      <label>Telefon *</label>
-      <input
-        required
-        type="tel"
-        name="kontakt_telefon"
-        id="kontaktTelefon"
-      >
-    </div>
+<div class="field full">
+<label>Strasse / Nr. *</label>
+<input required
+       name="rechnung_strasse"
+       autocomplete="street-address">
+</div>
 
-  </div>
+<div class="field">
+<label>PLZ *</label>
+<input required
+       name="rechnung_plz"
+       class="plz-field"
+       data-ort="rechnung_ort"
+       inputmode="numeric"
+       maxlength="4"
+       autocomplete="postal-code">
+</div>
+
+<div class="field">
+<label>Ort *</label>
+<input required
+       name="rechnung_ort"
+       class="ort-field"
+       data-plz="rechnung_plz"
+       autocomplete="address-level2">
+</div>
+
+</div>
 
 </section>
+
+
+
+<!-- ========================================================= -->
+<!-- KONTAKT FÜR RÜCKFRAGEN -->
+<!-- ========================================================= -->
+
+<section class="form-card">
+
+<h2>Kontakt für Rückfragen zum Auftrag</h2>
+
+<p class="hint">
+Diese Person kontaktieren wir bei organisatorischen oder technischen Rückfragen zum Auftrag.
+</p>
+
+<div class="grid-2">
+
+<div class="field">
+<label>Vorname *</label>
+<input required name="kontakt_vorname">
+</div>
+
+<div class="field">
+<label>Name *</label>
+<input required name="kontakt_name">
+</div>
+
+<div class="field">
+<label>E-Mail *</label>
+<input required type="email" name="email" autocomplete="email">
+</div>
+
+<div class="field">
+<label>Telefon *</label>
+<input required type="tel" name="telefon" autocomplete="tel">
+</div>
+
+</div>
+
+</section>
+
 
 
 <!-- ========================================================= -->
@@ -217,131 +152,105 @@
 
 <section class="form-card">
 
-  <h2>Kontaktperson vor Ort</h2>
+<h2>Kontaktperson vor Ort</h2>
 
-  <p class="hint">
-    Person, die am Tag der Inbetriebnahme vor Ort erreichbar ist.
-  </p>
+<p class="hint">
+Wer ist am Tag der Inbetriebnahme vor Ort erreichbar?
+</p>
 
-  <label class="check" style="margin-bottom:22px;">
-    <input
-      type="checkbox"
-      id="vorOrtGleichKontakt"
-      name="vorort_gleich_kontakt"
-      value="Ja"
-      checked
-    >
-    <span>Entspricht dem Kontakt für Rückfragen</span>
-  </label>
+<label class="check">
+<input
+  type="checkbox"
+  id="vorOrtGleich"
+  checked>
+<span>Gleich wie Kontakt für Rückfragen</span>
+</label>
 
-  <div class="grid-2">
+<div class="grid-2" id="vorOrtFields">
 
-    <div class="field">
-      <label>Vorname *</label>
-      <input
-        required
-        name="vorort_vorname"
-        id="vorOrtVorname"
-      >
-    </div>
+<div class="field">
+<label>Vorname</label>
+<input name="vorort_vorname">
+</div>
 
-    <div class="field">
-      <label>Nachname *</label>
-      <input
-        required
-        name="vorort_name"
-        id="vorOrtName"
-      >
-    </div>
+<div class="field">
+<label>Name</label>
+<input name="vorort_name">
+</div>
 
-    <div class="field">
-      <label>Telefon / Mobil *</label>
-      <input
-        required
-        type="tel"
-        name="vorort_telefon"
-        id="vorOrtTelefon"
-      >
-    </div>
+<div class="field">
+<label>E-Mail</label>
+<input type="email" name="vorort_email">
+</div>
 
-    <div class="field">
-      <label>E-Mail</label>
-      <input
-        type="email"
-        name="vorort_email"
-        id="vorOrtEmail"
-      >
-    </div>
+<div class="field">
+<label>Telefon</label>
+<input type="tel" name="vorort_telefon">
+</div>
 
-  </div>
+</div>
 
 </section>
 
 
+
 <!-- ========================================================= -->
-<!-- STANDORT -->
+<!-- STANDORT DER ANLAGE -->
 <!-- ========================================================= -->
 
 <section class="form-card">
 
-  <h2>Standort der Anlage</h2>
+<h2>Standort der Anlage</h2>
 
-  <p class="hint">
-    Adresse, an der sich die Wärmepumpe tatsächlich befindet.
-  </p>
+<p class="hint">
+Adresse, an der die Wärmepumpe tatsächlich installiert ist.
+</p>
 
-  <label class="check" style="margin-bottom:22px;">
-    <input
-      type="checkbox"
-      id="standortGleichAuftraggeber"
-      name="standort_gleich_auftraggeber"
-      value="Ja"
-      checked
-    >
-    <span>Entspricht der Rechnungsadresse des Auftraggebers</span>
-  </label>
+<label class="check">
+<input
+  type="checkbox"
+  id="standortGleich"
+  checked>
+<span>Gleiche Adresse wie Auftraggeber / Rechnungsadresse</span>
+</label>
 
-  <div class="grid-2">
+<div class="grid-2" id="standortFields">
 
-    <div class="field full">
-      <label>Strasse / Nr. *</label>
-      <input
-        required
-        name="standort_strasse"
-        id="standortStrasse"
-      >
-    </div>
+<div class="field full">
+<label>Strasse / Nr. *</label>
+<input required
+       name="standort_strasse">
+</div>
 
-    <div class="field">
-      <label>PLZ *</label>
-      <input
-        required
-        name="standort_plz"
-        id="standortPlz"
-        inputmode="numeric"
-      >
-    </div>
+<div class="field">
+<label>PLZ *</label>
+<input required
+       name="standort_plz"
+       class="plz-field"
+       data-ort="standort_ort"
+       inputmode="numeric"
+       maxlength="4">
+</div>
 
-    <div class="field">
-      <label>Ort *</label>
-      <input
-        required
-        name="standort_ort"
-        id="standortOrt"
-      >
-    </div>
+<div class="field">
+<label>Ort *</label>
+<input required
+       name="standort_ort"
+       class="ort-field"
+       data-plz="standort_plz">
+</div>
 
-    <div class="field full">
-      <label>Gebäude / Gebäudeteil / Zugangshinweis</label>
-      <input
-        name="standort_zugang"
-        placeholder="z. B. Technikraum UG, Zugang über Tiefgarage"
-      >
-    </div>
+<div class="field full">
+<label>Gebäude / Gebäudeteil / Zugangshinweis</label>
+<input
+  name="standort_zugang"
+  placeholder="z. B. Technikraum UG, Zugang über Tiefgarage">
+</div>
 
-  </div>
+</div>
 
 </section>
+
 
 
 <!-- ========================================================= -->
@@ -350,100 +259,98 @@
 
 <section class="form-card">
 
-  <h2>Anlage</h2>
+<h2>Angaben zur Wärmepumpe</h2>
 
-  <p class="hint">
-    Je genauer die Angaben sind, desto besser können wir die Inbetriebnahme vorbereiten.
-  </p>
+<p class="hint">
+Je genauer die Angaben sind, desto besser können wir die Inbetriebnahme vorbereiten.
+</p>
 
-  <div class="grid-2">
+<div class="grid-2">
 
-    <div class="field">
-      <label>Hersteller Wärmepumpe *</label>
-      <input required name="hersteller">
-    </div>
+<div class="field">
+<label>Hersteller Wärmepumpe *</label>
+<input required name="hersteller">
+</div>
 
-    <div class="field">
-      <label>Modell / Typ *</label>
-      <input required name="modell">
-    </div>
+<div class="field">
+<label>Modell / Typ *</label>
+<input required name="modell">
+</div>
 
-    <div class="field">
-      <label>Seriennummer</label>
-      <input name="seriennummer">
-    </div>
+<div class="field">
+<label>Seriennummer</label>
+<input name="seriennummer">
+</div>
 
-    <div class="field">
-      <label>Heizleistung</label>
-      <input
-        name="heizleistung"
-        placeholder="z. B. 12 kW"
-      >
-    </div>
+<div class="field">
+<label>Heizleistung</label>
+<input name="heizleistung" placeholder="z. B. 12 kW">
+</div>
 
-    <div class="field">
-      <label>Gebäudetyp</label>
-      <select name="gebaeudetyp">
-        <option value="">Bitte wählen</option>
-        <option>EFH</option>
-        <option>MFH</option>
-        <option>Gewerbe</option>
-        <option>Sonstiges</option>
-      </select>
-    </div>
+<div class="field">
+<label>Gebäudetyp</label>
+<select name="gebaeudetyp">
+<option value="">Bitte wählen</option>
+<option>EFH</option>
+<option>MFH</option>
+<option>Gewerbe</option>
+<option>Sonstiges</option>
+</select>
+</div>
 
-    <div class="field">
-      <label>Projekt</label>
-      <select name="projekt">
-        <option value="">Bitte wählen</option>
-        <option>Neubau</option>
-        <option>Sanierung</option>
-        <option>Ersatzanlage</option>
-      </select>
-    </div>
+<div class="field">
+<label>Projekt</label>
+<select name="projekt">
+<option value="">Bitte wählen</option>
+<option>Neubau</option>
+<option>Sanierung</option>
+<option>Ersatzanlage</option>
+</select>
+</div>
 
-    <div class="field">
-      <label>Wärmeabgabe</label>
-      <select name="waermeabgabe">
-        <option value="">Bitte wählen</option>
-        <option>Fussbodenheizung</option>
-        <option>Radiatoren</option>
-        <option>Gemischt</option>
-        <option>Andere</option>
-      </select>
-    </div>
+<div class="field">
+<label>Wärmeabgabe</label>
+<select name="waermeabgabe">
+<option value="">Bitte wählen</option>
+<option>Fussbodenheizung</option>
+<option>Radiatoren</option>
+<option>Gemischt</option>
+<option>Andere</option>
+</select>
+</div>
 
-    <div class="field">
-      <label>Warmwasser über Wärmepumpe?</label>
-      <select name="warmwasser">
-        <option value="">Bitte wählen</option>
-        <option>Ja</option>
-        <option>Nein</option>
-      </select>
-    </div>
+<div class="field">
+<label>Warmwasser über Wärmepumpe?</label>
+<select name="warmwasser">
+<option value="">Bitte wählen</option>
+<option>Ja</option>
+<option>Nein</option>
+</select>
+</div>
 
-    <div class="field">
-      <label>Pufferspeicher vorhanden?</label>
-      <select name="puffer">
-        <option value="">Bitte wählen</option>
-        <option>Ja</option>
-        <option>Nein</option>
-      </select>
-    </div>
+<div class="field">
+<label>Pufferspeicher vorhanden?</label>
+<select name="puffer">
+<option value="">Bitte wählen</option>
+<option>Ja</option>
+<option>Nein</option>
+</select>
+</div>
 
-    <div class="field">
-      <label>Zusatzheizung / Elektroheizstab?</label>
-      <select name="zusatzheizung">
-        <option value="">Bitte wählen</option>
-        <option>Ja</option>
-        <option>Nein</option>
-        <option>Unbekannt</option>
-      </select>
-    </div>
+<div class="field">
+<label>Zusatzheizung / Elektroheizstab?</label>
+<select name="zusatzheizung">
+<option value="">Bitte wählen</option>
+<option>Ja</option>
+<option>Nein</option>
+<option>Unbekannt</option>
+</select>
+</div>
 
-  </div>
+</div>
 
 </section>
+
 
 
 <!-- ========================================================= -->
@@ -452,80 +359,53 @@
 
 <section class="form-card">
 
-  <h2>Stand der Installation</h2>
+<h2>Stand der Installation</h2>
 
-  <p class="hint">
-    Bitte markieren, was bereits fertiggestellt ist.
-  </p>
+<p class="hint">
+Bitte markieren, welche Arbeiten bereits vollständig abgeschlossen sind.
+</p>
 
-  <div class="check-grid">
+<div class="check-grid">
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Wärmepumpe montiert"
-      >
-      <span>Wärmepumpe montiert</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Wärmepumpe montiert">
+<span>Wärmepumpe montiert</span>
+</label>
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Hydraulik fertiggestellt"
-      >
-      <span>Hydraulik fertiggestellt</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Hydraulik fertiggestellt">
+<span>Hydraulik fertiggestellt</span>
+</label>
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Gefüllt und entlüftet"
-      >
-      <span>Anlage gefüllt und entlüftet</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Gefüllt und entlüftet">
+<span>Anlage gefüllt und entlüftet</span>
+</label>
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Elektroanschluss fertig"
-      >
-      <span>Elektroanschluss fertig</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Elektroanschluss fertig">
+<span>Elektroanschluss fertig</span>
+</label>
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Aussengerät/Wärmequelle fertig"
-      >
-      <span>Aussengerät / Wärmequelle fertig</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Aussengerät/Wärmequelle fertig">
+<span>Aussengerät / Wärmequelle fertig</span>
+</label>
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Bus/Kommunikation fertig"
-      >
-      <span>Kommunikation / Bus fertig</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Bus/Kommunikation fertig">
+<span>Kommunikation / Bus fertig</span>
+</label>
 
-    <label class="check">
-      <input
-        type="checkbox"
-        name="status"
-        value="Anlage betriebsbereit"
-      >
-      <span>Anlage betriebsbereit</span>
-    </label>
+<label class="check">
+<input type="checkbox" name="status" value="Anlage betriebsbereit">
+<span>Anlage betriebsbereit</span>
+</label>
 
-  </div>
+</div>
 
 </section>
+
 
 
 <!-- ========================================================= -->
@@ -534,38 +414,34 @@
 
 <section class="form-card">
 
-  <h2>Wunschtermin</h2>
+<h2>Wunschtermin</h2>
 
-  <div class="grid-2 appointment-dates">
+<div class="termin-grid">
 
-    <div class="field">
-      <label>Gewünschter IBN-Termin</label>
-      <input
-        type="date"
-        name="termin1"
-      >
-    </div>
+<div class="field">
+<label>Gewünschter IBN-Termin</label>
+<input type="date" name="termin1">
+</div>
 
-    <div class="field">
-      <label>Ersatztermin</label>
-      <input
-        type="date"
-        name="termin2"
-      >
-    </div>
+<div class="field">
+<label>Ersatztermin</label>
+<input type="date" name="termin2">
+</div>
 
-    <div class="field full">
-      <label>Dringlichkeit</label>
-      <select name="dringlichkeit">
-        <option>Normal</option>
-        <option>Dringend</option>
-        <option>Termin zwingend</option>
-      </select>
-    </div>
+<div class="field termin-dringlichkeit">
+<label>Dringlichkeit</label>
+<select name="dringlichkeit">
+<option>Normal</option>
+<option>Dringend</option>
+<option>Termin zwingend</option>
+</select>
+</div>
 
-  </div>
+</div>
 
 </section>
+
+
 
 <!-- ========================================================= -->
 <!-- UNTERLAGEN -->
@@ -573,87 +449,78 @@
 
 <section class="form-card">
 
-  <h2>Unterlagen & Bilder</h2>
+<h2>Unterlagen & Bilder</h2>
 
-  <p class="hint">
-    Hilfreich sind insbesondere Typenschild, Gesamtanlage und vorhandene Schemas.
-  </p>
+<p class="hint">
+Hilfreich sind insbesondere Typenschild, Gesamtanlage und vorhandene Schemas.
+</p>
 
-  <div class="grid-2">
+<div class="grid-2">
 
-    <div class="field upload">
-      <label>Foto Typenschild</label>
-      <input
-        type="file"
-        accept="image/*,.pdf"
-        name="typenschild"
-      >
-    </div>
+<div class="field upload">
+<label>Foto Typenschild</label>
+<input type="file"
+       accept="image/*,.pdf"
+       name="typenschild">
+</div>
 
-    <div class="field upload">
-      <label>Foto Gesamtanlage</label>
-      <input
-        type="file"
-        accept="image/*,.pdf"
-        name="gesamtanlage"
-      >
-    </div>
+<div class="field upload">
+<label>Foto Gesamtanlage</label>
+<input type="file"
+       accept="image/*,.pdf"
+       name="gesamtanlage">
+</div>
 
-    <div class="field upload">
-      <label>Hydraulikschema</label>
-      <input
-        type="file"
-        accept="image/*,.pdf"
-        name="hydraulikschema"
-      >
-    </div>
+<div class="field upload">
+<label>Hydraulikschema</label>
+<input type="file"
+       accept="image/*,.pdf"
+       name="hydraulikschema">
+</div>
 
-    <div class="field upload">
-      <label>Elektroschema / weitere Unterlagen</label>
-      <input
-        type="file"
-        accept="image/*,.pdf"
-        name="elektroschema"
-      >
-    </div>
+<div class="field upload">
+<label>Elektroschema / weitere Unterlagen</label>
+<input type="file"
+       accept="image/*,.pdf"
+       name="elektroschema">
+</div>
 
-    <div class="field full">
-      <label>Bemerkungen / Besonderheiten</label>
-      <textarea name="bemerkungen"></textarea>
-    </div>
+<div class="field full">
+<label>Bemerkungen / Besonderheiten</label>
+<textarea name="bemerkungen"></textarea>
+</div>
 
-  </div>
+</div>
 
 </section>
 
 
+
 <div class="form-actions">
 
-  <p class="privacy">
-    Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung Ihrer Anfrage.
-    Pflichtfelder sind mit * gekennzeichnet.
-  </p>
+<p class="privacy">
+Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung Ihrer Anfrage.
+Pflichtfelder sind mit * gekennzeichnet.
+</p>
 
-  <button
-    class="submit-btn"
-    type="submit"
-  >
-    Inbetriebnahme anfragen →
-  </button>
+<button class="submit-btn" type="submit">
+Inbetriebnahme anfragen →
+</button>
 
 </div>
 
 </form>
 
 
+
 <section class="success" id="success">
 
-  <h2>Anfrage erhalten.</h2>
+<h2>Anfrage erhalten.</h2>
 
-  <p>
-    Vielen Dank. Die Angaben wurden erfasst.
-    Wir melden uns bei Ihnen, sobald wir die Anfrage geprüft haben.
-  </p>
+<p>
+Vielen Dank. Die Angaben wurden erfasst.
+Wir melden uns bei Ihnen, sobald wir die Anfrage geprüft haben.
+</p>
 
 </section>
 
@@ -661,214 +528,270 @@
 
 
 <footer class="form-footer">
-  <span>HeatIQ</span>
-  <span>info@heatiq.ch</span>
+<span>HeatIQ</span>
+<span>info@heatiq.ch</span>
 </footer>
 
 
+
+<!-- ========================================================= -->
+<!-- FORMULAR-VERSAND -->
+<!-- ========================================================= -->
+
+<script src="forms.js"></script>
+
+
+<!-- ========================================================= -->
+<!-- FORMULARLOGIK -->
+<!-- ========================================================= -->
+
 <script>
 
-/* ============================================================
-   HILFSFUNKTIONEN
-   ============================================================ */
+document.addEventListener("DOMContentLoaded", async () => {
 
-function setLocked(input, locked) {
+let plzData = [];
 
-  input.readOnly = locked;
+try {
 
-  if (locked) {
-    input.style.background = "#f1f3f1";
-    input.style.color = "#697274";
-    input.style.cursor = "not-allowed";
-  } else {
-    input.style.background = "";
-    input.style.color = "";
-    input.style.cursor = "";
-  }
+const response = await fetch("/data/plz.json");
+
+if (response.ok) {
+plzData = await response.json();
+}
+
+} catch (error) {
+
+console.error("PLZ-Daten konnten nicht geladen werden:", error);
+
 }
 
 
-/* ============================================================
-   AUFTRAGGEBER
-   ============================================================ */
+/* --------------------------------------------------------- */
+/* PLZ -> ORT */
+/* --------------------------------------------------------- */
 
-const agVorname = document.querySelector('[name="vorname"]');
-const agName = document.querySelector('[name="name"]');
-const agEmail = document.querySelector('[name="email"]');
-const agTelefon = document.querySelector('[name="telefon"]');
+document.querySelectorAll(".plz-field").forEach(input => {
 
-const agStrasse = document.querySelector('[name="auftraggeber_strasse"]');
-const agPlz = document.querySelector('[name="auftraggeber_plz"]');
-const agOrt = document.querySelector('[name="auftraggeber_ort"]');
+input.addEventListener("input", () => {
 
+const plz = input.value.trim();
 
-/* ============================================================
-   KONTAKT RÜCKFRAGEN
-   ============================================================ */
+if (plz.length !== 4) return;
 
-const kontaktCheck = document.getElementById("kontaktGleichAuftraggeber");
+const match = plzData.find(entry =>
+String(entry.plz) === plz
+);
 
-const kontaktVorname = document.getElementById("kontaktVorname");
-const kontaktName = document.getElementById("kontaktName");
-const kontaktEmail = document.getElementById("kontaktEmail");
-const kontaktTelefon = document.getElementById("kontaktTelefon");
+if (!match) return;
 
+const ortField =
+document.querySelector(`[name="${input.dataset.ort}"]`);
 
-function syncKontakt() {
-
-  const locked = kontaktCheck.checked;
-
-  if (locked) {
-    kontaktVorname.value = agVorname.value;
-    kontaktName.value = agName.value;
-    kontaktEmail.value = agEmail.value;
-    kontaktTelefon.value = agTelefon.value;
-  }
-
-  [
-    kontaktVorname,
-    kontaktName,
-    kontaktEmail,
-    kontaktTelefon
-  ].forEach(input => setLocked(input, locked));
-
-  syncVorOrt();
+if (ortField) {
+ortField.value = match.ort;
 }
 
-
-kontaktCheck.addEventListener("change", syncKontakt);
-
-[
-  agVorname,
-  agName,
-  agEmail,
-  agTelefon
-].forEach(input => {
-
-  input.addEventListener("input", () => {
-
-    if (kontaktCheck.checked) {
-      syncKontakt();
-    }
-
-  });
+});
 
 });
 
 
-/* ============================================================
-   KONTAKT VOR ORT
-   ============================================================ */
+/* --------------------------------------------------------- */
+/* ORT -> PLZ */
+/* --------------------------------------------------------- */
 
-const vorOrtCheck = document.getElementById("vorOrtGleichKontakt");
+document.querySelectorAll(".ort-field").forEach(input => {
 
-const vorOrtVorname = document.getElementById("vorOrtVorname");
-const vorOrtName = document.getElementById("vorOrtName");
-const vorOrtTelefon = document.getElementById("vorOrtTelefon");
-const vorOrtEmail = document.getElementById("vorOrtEmail");
+input.addEventListener("change", () => {
 
+const ort = input.value.trim().toLowerCase();
 
-function syncVorOrt() {
+if (!ort) return;
 
-  const locked = vorOrtCheck.checked;
+const match = plzData.find(entry =>
+String(entry.ort).toLowerCase() === ort
+);
 
-  if (locked) {
-    vorOrtVorname.value = kontaktVorname.value;
-    vorOrtName.value = kontaktName.value;
-    vorOrtTelefon.value = kontaktTelefon.value;
-    vorOrtEmail.value = kontaktEmail.value;
-  }
+if (!match) return;
 
-  [
-    vorOrtVorname,
-    vorOrtName,
-    vorOrtTelefon,
-    vorOrtEmail
-  ].forEach(input => setLocked(input, locked));
+const plzField =
+document.querySelector(`[name="${input.dataset.plz}"]`);
 
+if (plzField) {
+plzField.value = match.plz;
 }
 
-
-vorOrtCheck.addEventListener("change", syncVorOrt);
-
-[
-  kontaktVorname,
-  kontaktName,
-  kontaktTelefon,
-  kontaktEmail
-].forEach(input => {
-
-  input.addEventListener("input", () => {
-
-    if (vorOrtCheck.checked) {
-      syncVorOrt();
-    }
-
-  });
+});
 
 });
 
 
-/* ============================================================
-   STANDORT DER ANLAGE
-   ============================================================ */
 
-const standortCheck = document.getElementById("standortGleichAuftraggeber");
+/* --------------------------------------------------------- */
+/* KONTAKT VOR ORT */
+/* --------------------------------------------------------- */
 
-const standortStrasse = document.getElementById("standortStrasse");
-const standortPlz = document.getElementById("standortPlz");
-const standortOrt = document.getElementById("standortOrt");
+const vorOrtCheck =
+document.getElementById("vorOrtGleich");
 
-
-function syncStandort() {
-
-  const locked = standortCheck.checked;
-
-  if (locked) {
-    standortStrasse.value = agStrasse.value;
-    standortPlz.value = agPlz.value;
-    standortOrt.value = agOrt.value;
-  }
-
-  [
-    standortStrasse,
-    standortPlz,
-    standortOrt
-  ].forEach(input => setLocked(input, locked));
-
-}
+const vorOrtFields =
+document.getElementById("vorOrtFields");
 
 
-standortCheck.addEventListener("change", syncStandort);
+function updateVorOrt() {
 
-[
-  agStrasse,
-  agPlz,
-  agOrt
-].forEach(input => {
+const same = vorOrtCheck.checked;
 
-  input.addEventListener("input", () => {
+const source = {
+vorname: document.querySelector('[name="kontakt_vorname"]'),
+name: document.querySelector('[name="kontakt_name"]'),
+email: document.querySelector('[name="email"]'),
+telefon: document.querySelector('[name="telefon"]')
+};
 
-    if (standortCheck.checked) {
-      syncStandort();
-    }
+const target = {
+vorname: document.querySelector('[name="vorort_vorname"]'),
+name: document.querySelector('[name="vorort_name"]'),
+email: document.querySelector('[name="vorort_email"]'),
+telefon: document.querySelector('[name="vorort_telefon"]')
+};
 
-  });
+
+Object.values(target).forEach(field => {
+
+field.disabled = same;
 
 });
 
 
-/* ============================================================
-   STARTZUSTAND
-   ============================================================ */
+if (same) {
 
-syncKontakt();
-syncVorOrt();
-syncStandort();
+target.vorname.value = source.vorname.value;
+target.name.value = source.name.value;
+target.email.value = source.email.value;
+target.telefon.value = source.telefon.value;
+
+vorOrtFields.style.opacity = "0.45";
+
+} else {
+
+vorOrtFields.style.opacity = "1";
+
+}
+
+}
+
+
+vorOrtCheck.addEventListener("change", updateVorOrt);
+
+
+[
+"kontakt_vorname",
+"kontakt_name",
+"email",
+"telefon"
+].forEach(name => {
+
+document
+.querySelector(`[name="${name}"]`)
+?.addEventListener("input", updateVorOrt);
+
+});
+
+
+updateVorOrt();
+
+
+
+/* --------------------------------------------------------- */
+/* STANDORT = RECHNUNGSADRESSE */
+/* --------------------------------------------------------- */
+
+const standortCheck =
+document.getElementById("standortGleich");
+
+const standortFields =
+document.getElementById("standortFields");
+
+
+function updateStandort() {
+
+const same = standortCheck.checked;
+
+const source = {
+
+strasse:
+document.querySelector('[name="rechnung_strasse"]'),
+
+plz:
+document.querySelector('[name="rechnung_plz"]'),
+
+ort:
+document.querySelector('[name="rechnung_ort"]')
+
+};
+
+
+const target = {
+
+strasse:
+document.querySelector('[name="standort_strasse"]'),
+
+plz:
+document.querySelector('[name="standort_plz"]'),
+
+ort:
+document.querySelector('[name="standort_ort"]')
+
+};
+
+
+Object.values(target).forEach(field => {
+
+field.disabled = same;
+
+});
+
+
+if (same) {
+
+target.strasse.value = source.strasse.value;
+target.plz.value = source.plz.value;
+target.ort.value = source.ort.value;
+
+standortFields.style.opacity = "0.45";
+
+} else {
+
+standortFields.style.opacity = "1";
+
+}
+
+}
+
+
+standortCheck.addEventListener("change", updateStandort);
+
+
+[
+"rechnung_strasse",
+"rechnung_plz",
+"rechnung_ort"
+].forEach(name => {
+
+document
+.querySelector(`[name="${name}"]`)
+?.addEventListener("input", updateStandort);
+
+});
+
+
+updateStandort();
+
+});
 
 </script>
 
-<script src="forms.js"></script>
 
 </body>
 </html>
