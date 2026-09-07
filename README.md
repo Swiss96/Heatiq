@@ -28,3 +28,4 @@ Worker-Code wird nur für /api/* zuerst ausgeführt.
 ## Deployment
 Empfohlen: GitHub Repository mit Cloudflare Workers Builds verbinden.
 Deploy command: npx wrangler deploy
+Deployment-Test 07.09.2026
