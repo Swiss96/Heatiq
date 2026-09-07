@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inbetriebnahme anmelden – HeatIQ</title>
+<link rel="stylesheet" href="forms.css">
+</head>
+<body>
+<header class="form-header">
+  <a class="form-logo" href="index.html">HEAT<span>IQ</span></a>
+  <a class="back-link" href="index.html">← Zurück zur Website</a>
+</header>
+
+<section class="form-hero">
+  <div class="form-wrap">
+    <p class="eyebrow">01 · INBETRIEBNAHME</p>
+    <h1>Inbetriebnahme anmelden</h1>
+    <p>Damit wir die Inbetriebnahme sinnvoll vorbereiten können, erfassen wir hier die wichtigsten Angaben zur Anlage, zum Installationsstand und zum gewünschten Termin.</p>
+  </div>
+</section>
+
+<main class="form-main">
+  
+  <form id="serviceForm" novalidate>
+    <div aria-hidden="true" style="position:absolute;left:-9999px"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    
+<section class="form-card">
+  <h2>Kontaktdaten</h2>
+  <p class="hint">Damit wir wissen, wen wir bei Rückfragen erreichen dürfen.</p>
+  <div class="grid-2">
+    <div class="field"><label>Firma / Privatperson *</label><select required name="kundentyp"><option value="">Bitte wählen</option><option>Privatperson</option><option>Firma</option><option>Verwaltung</option><option>Installateur</option><option>Sonstiges</option></select></div>
+    <div class="field"><label>Firma</label><input name="firma" autocomplete="organization"></div>
+    <div class="field"><label>Vorname *</label><input required name="vorname" autocomplete="given-name"></div>
+    <div class="field"><label>Name *</label><input required name="name" autocomplete="family-name"></div>
+    <div class="field"><label>E-Mail *</label><input required type="email" name="email" autocomplete="email"></div>
+    <div class="field"><label>Telefon *</label><input required type="tel" name="telefon" autocomplete="tel"></div>
+  </div>
+</section>
+
+<section class="form-card">
+  <h2>Standort der Anlage</h2>
+  <p class="hint">Bitte die Adresse angeben, an der die Wärmepumpe tatsächlich steht.</p>
+  <div class="grid-2">
+    <div class="field full"><label>Strasse / Nr. *</label><input required name="standort_strasse" autocomplete="street-address"></div>
+    <div class="field"><label>PLZ *</label><input required name="standort_plz" inputmode="numeric"></div>
+    <div class="field"><label>Ort *</label><input required name="standort_ort"></div>
+    <div class="field full"><label>Gebäude / Gebäudeteil / Zugangshinweis</label><input name="standort_zugang" placeholder="z. B. Technikraum UG, Zugang über Tiefgarage"></div>
+  </div>
+</section>
+
+<section class="form-card">
+  <h2>Anlage</h2>
+  <p class="hint">Je genauer die Angaben sind, desto besser können wir die Inbetriebnahme vorbereiten.</p>
+  <div class="grid-2">
+    <div class="field"><label>Hersteller Wärmepumpe *</label><input required name="hersteller"></div>
+    <div class="field"><label>Modell / Typ *</label><input required name="modell"></div>
+    <div class="field"><label>Seriennummer</label><input name="seriennummer"></div>
+    <div class="field"><label>Heizleistung</label><input name="heizleistung" placeholder="z. B. 12 kW"></div>
+    <div class="field"><label>Gebäudetyp</label><select name="gebaeudetyp"><option value="">Bitte wählen</option><option>EFH</option><option>MFH</option><option>Gewerbe</option><option>Sonstiges</option></select></div>
+    <div class="field"><label>Projekt</label><select name="projekt"><option value="">Bitte wählen</option><option>Neubau</option><option>Sanierung</option><option>Ersatzanlage</option></select></div>
+    <div class="field"><label>Wärmeabgabe</label><select name="waermeabgabe"><option value="">Bitte wählen</option><option>Fussbodenheizung</option><option>Radiatoren</option><option>Gemischt</option><option>Andere</option></select></div>
+    <div class="field"><label>Warmwasser über Wärmepumpe?</label><select name="warmwasser"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></div>
+    <div class="field"><label>Pufferspeicher vorhanden?</label><select name="puffer"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select></div>
+    <div class="field"><label>Zusatzheizung / Elektroheizstab?</label><select name="zusatzheizung"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option><option>Unbekannt</option></select></div>
+  </div>
+</section>
+<section class="form-card">
+  <h2>Stand der Installation</h2>
+  <p class="hint">Bitte markieren, was bereits fertiggestellt ist.</p>
+  <div class="check-grid">
+    <label class="check"><input type="checkbox" name="status" value="Wärmepumpe montiert"><span>Wärmepumpe montiert</span></label>
+    <label class="check"><input type="checkbox" name="status" value="Hydraulik fertiggestellt"><span>Hydraulik fertiggestellt</span></label>
+    <label class="check"><input type="checkbox" name="status" value="Gefüllt und entlüftet"><span>Anlage gefüllt und entlüftet</span></label>
+    <label class="check"><input type="checkbox" name="status" value="Elektroanschluss fertig"><span>Elektroanschluss fertig</span></label>
+    <label class="check"><input type="checkbox" name="status" value="Aussengerät/Wärmequelle fertig"><span>Aussengerät / Wärmequelle fertig</span></label>
+    <label class="check"><input type="checkbox" name="status" value="Bus/Kommunikation fertig"><span>Kommunikation / Bus fertig</span></label>
+    <label class="check"><input type="checkbox" name="status" value="Anlage betriebsbereit"><span>Anlage betriebsbereit</span></label>
+  </div>
+</section>
+<section class="form-card">
+  <h2>Wunschtermin</h2>
+  <div class="grid-3">
+    <div class="field"><label>Gewünschtes IBN-Datum</label><input type="date" name="termin1"></div>
+    <div class="field"><label>Alternativdatum</label><input type="date" name="termin2"></div>
+    <div class="field"><label>Dringlichkeit</label><select name="dringlichkeit"><option>Normal</option><option>Dringend</option><option>Termin zwingend</option></select></div>
+  </div>
+</section>
+<section class="form-card">
+  <h2>Unterlagen & Bilder</h2>
+  <p class="hint">Hilfreich sind insbesondere Typenschild, Gesamtanlage und vorhandene Schemas.</p>
+  <div class="grid-2">
+    <div class="field upload"><label>Foto Typenschild</label><input type="file" accept="image/*,.pdf" name="typenschild"></div>
+    <div class="field upload"><label>Foto Gesamtanlage</label><input type="file" accept="image/*,.pdf" name="gesamtanlage"></div>
+    <div class="field upload"><label>Hydraulikschema</label><input type="file" accept="image/*,.pdf" name="hydraulikschema"></div>
+    <div class="field upload"><label>Elektroschema / weitere Unterlagen</label><input type="file" accept="image/*,.pdf" name="elektroschema"></div>
+    <div class="field full"><label>Bemerkungen / Besonderheiten</label><textarea name="bemerkungen"></textarea></div>
+  </div>
+</section>
+
+    <div class="form-actions">
+      <p class="privacy">Mit dem Absenden übermitteln Sie uns die Angaben zur Bearbeitung Ihrer Anfrage. Pflichtfelder sind mit * gekennzeichnet.</p>
+      <button class="submit-btn" type="submit">Inbetriebnahme anfragen →</button>
+    </div>
+  </form>
+  <section class="success" id="success">
+    <h2>Anfrage erhalten.</h2>
+    <p>Vielen Dank. Die Angaben wurden erfasst. Wir melden uns bei Ihnen, sobald wir die Anfrage geprüft haben.</p>
+  </section>
+</main>
+
+<footer class="form-footer">
+  <span>HeatIQ</span><span>info@heatiq.ch</span>
+</footer>
+<script src="forms.js"></script>
+</body>
+</html>
