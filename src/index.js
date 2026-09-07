@@ -137,8 +137,6 @@ async function handleForm(request, env) {
       if (!value.name || value.size === 0) continue;
 
       const buffer = await value.arrayBuffer();
-
-      const buffer = await value.arrayBuffer();
 const bytes = new Uint8Array(buffer);
 
 attachments.push({
