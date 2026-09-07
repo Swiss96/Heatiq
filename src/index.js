@@ -192,21 +192,22 @@ function statusCard(label, checked) {
     <div style="
       margin:0 0 8px;
       padding:11px 13px;
-      border:1px solid ${checked ? "#b8dc70" : "#d8dfda"};
+      border:1px solid ${checked ? "#b8dc70" : "#e4b3b3"};
       border-radius:10px;
-      background:${checked ? "#f5faea" : "#fbfcf9"};
+      background:${checked ? "#f5faea" : "#fff5f5"};
       font-size:14px;
       font-weight:700;
-      color:${checked ? "#27351a" : "#77817f"};
+      color:${checked ? "#27351a" : "#7a2d2d"};
     ">
 
       <span style="
         display:inline-block;
         width:22px;
-        color:${checked ? "#79a91e" : "#a4adaa"};
+        color:${checked ? "#79a91e" : "#c94b4b"};
         font-size:17px;
+        font-weight:900;
       ">
-        ${checked ? "✓" : "○"}
+        ${checked ? "✓" : "✕"}
       </span>
 
       ${escapeHtml(label)}
