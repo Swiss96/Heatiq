@@ -297,22 +297,36 @@ function buildInbetriebnahmeEmail(
   /* ---------------------------------------------------------
      Kontakt vor Ort
      --------------------------------------------------------- */
+const vorOrtHinweis = `
+  <div style="
+    margin-bottom:12px;
+    padding:11px 13px;
+    border:1px solid ${kontaktGleich ? "#b8dc70" : "#e4b3b3"};
+    border-radius:10px;
+    background:${kontaktGleich ? "#f5faea" : "#fff5f5"};
+    color:${kontaktGleich ? "#27351a" : "#7a2d2d"};
+    font-size:13px;
+    font-weight:700;
+  ">
 
-  const vorOrtHinweis = kontaktGleich
-    ? `
-      <div style="
-        margin-bottom:12px;
-        padding:9px 12px;
-        background:#f5faea;
-        border-radius:9px;
-        color:#526c24;
-        font-size:12px;
-        font-weight:700;
-      ">
-        ✓ Entspricht Kontakt für Rückfragen
-      </div>
-    `
-    : "";
+    <span style="
+      display:inline-block;
+      width:22px;
+      color:${kontaktGleich ? "#79a91e" : "#c94b4b"};
+      font-size:17px;
+      font-weight:900;
+    ">
+      ${kontaktGleich ? "✓" : "✕"}
+    </span>
+
+    ${
+      kontaktGleich
+        ? "Entspricht Kontakt für Rückfragen"
+        : "Abweichende Kontaktperson angegeben"
+    }
+
+  </div>
+`;
 
 
   const vorOrt = section(
@@ -344,22 +358,36 @@ function buildInbetriebnahmeEmail(
      Anlagenstandort
      --------------------------------------------------------- */
 
-  const standortHinweis = standortGleich
-    ? `
-      <div style="
-        margin-bottom:12px;
-        padding:9px 12px;
-        background:#f5faea;
-        border-radius:9px;
-        color:#526c24;
-        font-size:12px;
-        font-weight:700;
-      ">
-        ✓ Entspricht Auftraggeber / Rechnungsadresse
-      </div>
-    `
-    : "";
+  const standortHinweis = `
+  <div style="
+    margin-bottom:12px;
+    padding:11px 13px;
+    border:1px solid ${standortGleich ? "#b8dc70" : "#e4b3b3"};
+    border-radius:10px;
+    background:${standortGleich ? "#f5faea" : "#fff5f5"};
+    color:${standortGleich ? "#27351a" : "#7a2d2d"};
+    font-size:13px;
+    font-weight:700;
+  ">
 
+    <span style="
+      display:inline-block;
+      width:22px;
+      color:${standortGleich ? "#79a91e" : "#c94b4b"};
+      font-size:17px;
+      font-weight:900;
+    ">
+      ${standortGleich ? "✓" : "✕"}
+    </span>
+
+    ${
+      standortGleich
+        ? "Entspricht Auftraggeber / Rechnungsadresse"
+        : "Abweichender Anlagenstandort angegeben"
+    }
+
+  </div>
+`;
 
   const standort = section(
     "04 · Standort der Anlage",
