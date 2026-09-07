@@ -1,2 +1,12 @@
-// HeatIQ screen-optimised version.
-// No animated icons, no scale/zoom effects and no scroll-driven transforms.
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav');
+if (toggle && nav) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+}
