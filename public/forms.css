@@ -419,7 +419,106 @@ input[type="date"] {
     margin-right: 4%;
   }
 }
+/* =========================================================
+   AUSWAHLFELDER / CHOICE CARDS
+   ========================================================= */
 
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.choice-grid.cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.choice {
+  min-height: 62px;
+  padding: 14px 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border: 1px solid #d7ded9;
+  border-radius: 11px;
+  background: #fbfcf9;
+
+  cursor: pointer;
+}
+
+.choice:hover {
+  border-color: #b9c7bd;
+  background: #f7f9f5;
+}
+
+.choice input[type="checkbox"],
+.choice input[type="radio"] {
+  flex: 0 0 auto;
+
+  width: 24px;
+  height: 24px;
+  margin: 0;
+
+  accent-color: #9bd82e;
+}
+
+.choice span {
+  color: #394446;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   HINWEIS / DRINGENDE MELDUNG
+   ========================================================= */
+
+.notice {
+  width: 100%;
+  margin: 0 0 28px;
+  padding: 18px 20px;
+
+  border: 1px solid #d8dfda;
+  border-radius: 14px;
+
+  background: #fff;
+
+  color: #455052;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.notice strong {
+  color: #111718;
+}
+
+.notice.urgent {
+  border-left: 4px solid #9bd82e;
+}
+
+
+/* =========================================================
+   MOBILE CHOICE FIELDS
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .choice-grid,
+  .choice-grid.cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .choice {
+    min-height: 58px;
+    padding: 13px 14px;
+  }
+
+}
 
 /* =========================================================
    MOBILE
