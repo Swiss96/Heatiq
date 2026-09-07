@@ -684,20 +684,30 @@ function buildCalendarAttachment(
   }
 
 
-  const startDate =
-    icsDate(termin);
+  const match = termin.match(
+    /^(\d{4})-(\d{2})-(\d{2})$/
+  );
 
-  const endDate =
-    icsDate(
-      addOneDay(termin)
-    );
-
-  if (
-    !startDate ||
-    !endDate
-  ) {
+  if (!match) {
     return null;
   }
+
+
+  /*
+   * Der Termin wird als lokaler Termin
+   * in der Zeitzone Europe/Zurich angelegt.
+   *
+   * 08:00 - 17:00 Uhr
+   */
+
+  const dateCompact =
+    `${match[1]}${match[2]}${match[3]}`;
+
+  const startDateTime =
+    `${dateCompact}T080000`;
+
+  const endDateTime =
+    `${dateCompact}T170000`;
 
 
   const firma =
@@ -710,6 +720,7 @@ function buildCalendarAttachment(
     firma ||
     person ||
     "Kunde";
+
 
   const ort =
     value(form, "standort_ort");
@@ -724,6 +735,7 @@ function buildCalendarAttachment(
   const location =
     [
       strasse,
+
       [plz, ort]
         .filter(Boolean)
         .join(" ")
@@ -751,6 +763,8 @@ function buildCalendarAttachment(
   const descriptionLines = [
     "VORLÄUFIGER TERMIN / VORBEHALT",
     "Der Termin ist noch nicht definitiv bestätigt.",
+    "",
+    "Zeitfenster: 08:00 - 17:00 Uhr",
     "",
     `HeatIQ Referenz: ${reference}`,
 
@@ -799,8 +813,10 @@ function buildCalendarAttachment(
   const description =
     descriptionLines.join("\n");
 
+
   const timestamp =
     makeIcsTimestamp();
+
 
   const uid =
     `${reference}@heatiq.ch`;
@@ -818,8 +834,13 @@ function buildCalendarAttachment(
     `UID:${escapeIcs(uid)}`,
     `DTSTAMP:${timestamp}`,
 
-    `DTSTART;VALUE=DATE:${startDate}`,
-    `DTEND;VALUE=DATE:${endDate}`,
+    /*
+     * Kein Ganztagstermin:
+     * 08:00 - 17:00 Europe/Zurich
+     */
+
+    `DTSTART;TZID=Europe/Zurich:${startDateTime}`,
+    `DTEND;TZID=Europe/Zurich:${endDateTime}`,
 
     `SUMMARY:${escapeIcs(title)}`,
 
@@ -829,12 +850,18 @@ function buildCalendarAttachment(
 
     `DESCRIPTION:${escapeIcs(description)}`,
 
+    /*
+     * Vorläufiger Termin
+     */
+
     "STATUS:TENTATIVE",
 
     /*
-     * Der Wunschtermin blockiert den Kalender noch nicht
-     * als definitiv beschäftigt.
+     * Trotz 08:00-17:00 bleibt der Termin
+     * als Vorbehalt transparent und blockiert
+     * die Verfügbarkeit nicht definitiv.
      */
+
     "TRANSP:TRANSPARENT",
 
     "END:VEVENT",
