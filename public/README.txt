@@ -1,8 +1,16 @@
-HeatIQ – Screen Optimiert + NULITE Schlussbild
+HeatIQ – Formulare Final
 
-- Bestehende screenoptimierte HeatIQ-Version unverändert als Basis.
-- Das vom Benutzer gelieferte NULITE-Bild ist ganz am Ende der Website eingefügt.
-- Das Original-Seitenverhältnis bleibt immer erhalten.
-- Desktop, Tablet und Handy: 100% verfügbare Seitenbreite, Höhe automatisch.
-- Kein Stretching, kein Crop, kein object-fit: cover.
-- Dadurch ist das komplette NULITE-Motiv auf jedem Endgerät sichtbar.
+Enthalten:
+- index.html (bestehender Onepager, CTAs auf neue Formularseiten verlinkt)
+- inbetriebnahme.html
+- wartung.html
+- stoerung.html
+- forms.css
+- forms.js
+- bestehende Assets / Styles der Website
+
+Wichtig:
+Die Formulare sind vollständig als Frontend umgesetzt und validieren Pflichtfelder.
+Aktuell werden die Daten noch NICHT an einen Server, Maildienst oder CRM gesendet.
+Beim Absenden erscheint eine Bestätigung und die Daten werden nur lokal im Browser verarbeitet.
+Für produktiven Betrieb muss als nächster Schritt ein Backend/Cloudflare Worker/API-Endpunkt angebunden werden.
