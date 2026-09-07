@@ -138,12 +138,15 @@ async function handleForm(request, env) {
 
       const buffer = await value.arrayBuffer();
 
-      attachments.push({
-        content: arrayBufferToBase64(buffer),
-        filename: value.name,
-        type: value.type || "application/octet-stream",
-        disposition: "attachment",
-      });
+      const buffer = await value.arrayBuffer();
+const bytes = new Uint8Array(buffer);
+
+attachments.push({
+  content: bytes,
+  filename: value.name,
+  type: value.type || "application/octet-stream",
+  disposition: "attachment",
+});
 
       continue;
     }
