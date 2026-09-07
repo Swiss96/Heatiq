@@ -227,7 +227,47 @@ a {
 /* =========================================================
    DATUMSFELDER / WUNSCHTERMIN
    ========================================================= */
+/* Datumsfelder kompakter und sauber ausgerichtet */
 
+.appointment-dates input[type="date"],
+.termin-grid input[type="date"] {
+  height: 46px;
+  padding: 0 14px;
+
+  font-size: 15px;
+  line-height: 46px;
+
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Safari / iPad */
+
+.appointment-dates input[type="date"]::-webkit-date-and-time-value,
+.termin-grid input[type="date"]::-webkit-date-and-time-value {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  text-align: left;
+}
+
+/* innerer Safari-Bereich */
+
+.appointment-dates input[type="date"]::-webkit-datetime-edit,
+.termin-grid input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+  line-height: 46px;
+}
+
+/* Kalender-Icon rechts etwas sauberer */
+
+.appointment-dates input[type="date"]::-webkit-calendar-picker-indicator,
+.termin-grid input[type="date"]::-webkit-calendar-picker-indicator {
+  margin: 0;
+  padding: 4px;
+}
 .appointment-dates {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
