@@ -112,3 +112,9 @@ textarea{min-height:130px;resize:vertical}
   .privacy{margin:0}
   .submit-btn{width:100%}
 }
+/* Wunschtermin – Mobile */
+@media (max-width: 700px) {
+  .appointment-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
