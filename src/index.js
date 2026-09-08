@@ -1,6 +1,42 @@
 const RECIPIENT = "info@heatiq.ch";
 const SENDER = "auftraege@mail.heatiq.ch";
 
+/* =========================================================
+   SICHERHEIT / LIMITS
+   ========================================================= */
+
+const ALLOWED_FORM_TYPES = new Set([
+  "inbetriebnahme",
+  "wartung",
+  "stoerung"
+]);
+
+const MAX_REQUEST_BYTES = 8 * 1024 * 1024;
+const MAX_TOTAL_UPLOAD_BYTES = 5 * 1024 * 1024;
+const MAX_FILE_BYTES = 3 * 1024 * 1024;
+const MAX_FILE_COUNT = 5;
+const MAX_FIELD_LENGTH = 5000;
+const MAX_TOTAL_TEXT_LENGTH = 30000;
+
+const ALLOWED_FILE_TYPES = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/heic",
+  "image/heif"
+]);
+
+const ALLOWED_FILE_EXTENSIONS = new Set([
+  "pdf",
+  "jpg",
+  "jpeg",
+  "png",
+  "webp",
+  "heic",
+  "heif"
+]);
+
 
 /* =========================================================
    FORMULARTITEL
@@ -69,7 +105,13 @@ function makeReference(type) {
     type === "stoerung" ? "STOER" :
     "ANF";
 
-  return `HIQ-${prefix}-${stamp}`;
+  const random =
+    crypto.randomUUID()
+      .replaceAll("-", "")
+      .slice(0, 6)
+      .toUpperCase();
+
+  return `HIQ-${prefix}-${stamp}-${random}`;
 }
 
 
@@ -106,6 +148,111 @@ function fullName(form, prefix = "") {
   return [first, last]
     .filter(Boolean)
     .join(" ");
+}
+
+
+function jsonError(message, status = 400) {
+  return Response.json({
+    success: false,
+    error: message
+  }, {
+    status,
+    headers: {
+      "Cache-Control": "no-store"
+    }
+  });
+}
+
+
+function isValidEmail(email) {
+  if (!email) return false;
+
+  const emailValue = String(email).trim();
+
+  if (
+    emailValue.length > 254 ||
+    emailValue.includes("\r") ||
+    emailValue.includes("\n")
+  ) {
+    return false;
+  }
+
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
+}
+
+
+function safeFilename(name = "datei") {
+  const cleaned = String(name)
+    .normalize("NFKC")
+    .replace(/[\/\\:*?"<>|\x00-\x1F]/g, "_")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 120);
+
+  return cleaned || "datei";
+}
+
+
+function fileExtension(filename = "") {
+  const match = String(filename)
+    .toLowerCase()
+    .match(/\.([a-z0-9]+)$/);
+
+  return match ? match[1] : "";
+}
+
+
+function validateTextFields(form) {
+  let total = 0;
+
+  for (const [key, item] of form.entries()) {
+    if (item instanceof File) {
+      continue;
+    }
+
+    const keyText = String(key);
+    const val = String(item);
+
+    if (keyText.length > 100) {
+      return "Ungültiges Formularfeld.";
+    }
+
+    if (val.length > MAX_FIELD_LENGTH) {
+      return "Ein Formularfeld enthält zu viel Text.";
+    }
+
+    total += val.length;
+
+    if (total > MAX_TOTAL_TEXT_LENGTH) {
+      return "Das Formular enthält zu viele Textdaten.";
+    }
+  }
+
+  return null;
+}
+
+
+function validateUpload(file) {
+  const ext = fileExtension(file.name);
+  const mime = String(file.type || "").toLowerCase();
+
+  if (!ALLOWED_FILE_EXTENSIONS.has(ext)) {
+    return "Nicht erlaubter Dateityp. Erlaubt sind PDF, JPG, PNG, WEBP, HEIC und HEIF.";
+  }
+
+  if (
+    mime &&
+    mime !== "application/octet-stream" &&
+    !ALLOWED_FILE_TYPES.has(mime)
+  ) {
+    return "Nicht erlaubter Dateityp. Erlaubt sind PDF und Bilddateien.";
+  }
+
+  if (file.size > MAX_FILE_BYTES) {
+    return "Eine Datei ist zu gross. Maximal 3 MB pro Datei.";
+  }
+
+  return null;
 }
 
 
@@ -1644,29 +1791,73 @@ async function handleForm(
   request,
   env
 ) {
-  const form =
-    await request.formData();
+  const contentType =
+    request.headers.get("content-type") || "";
 
+  if (
+    !contentType
+      .toLowerCase()
+      .startsWith("multipart/form-data")
+  ) {
+    return jsonError(
+      "Ungültiges Anfrageformat.",
+      415
+    );
+  }
+
+  const contentLength =
+    Number(
+      request.headers.get("content-length") || 0
+    );
+
+  if (
+    Number.isFinite(contentLength) &&
+    contentLength > MAX_REQUEST_BYTES
+  ) {
+    return jsonError(
+      "Die Anfrage ist zu gross.",
+      413
+    );
+  }
+
+  let form;
+
+  try {
+    form =
+      await request.formData();
+  }
+
+  catch (error) {
+    console.error(
+      "FormData parsing failed",
+      error
+    );
+
+    return jsonError(
+      "Das Formular konnte nicht verarbeitet werden.",
+      400
+    );
+  }
 
   const type =
     String(
-      form.get("_form_type") ||
-      "anfrage"
-    );
+      form.get("_form_type") || ""
+    )
+      .trim()
+      .toLowerCase();
 
+  if (!ALLOWED_FORM_TYPES.has(type)) {
+    return jsonError(
+      "Ungültiger Formulartyp.",
+      400
+    );
+  }
 
   const title =
-    formTitles[type] ||
-    formTitles.anfrage;
-
+    formTitles[type];
 
   const reference =
     makeReference(type);
-
-
-  /* ---------------------------------------------------------
-     HONEYPOT
-     --------------------------------------------------------- */
 
   if (
     String(
@@ -1676,26 +1867,37 @@ async function handleForm(
     return Response.json({
       success: true,
       reference
+    }, {
+      headers: {
+        "Cache-Control": "no-store"
+      }
     });
   }
 
+  const textValidationError =
+    validateTextFields(form);
 
-  /* ---------------------------------------------------------
-     INSTALLATIONSSTATUS
-     --------------------------------------------------------- */
+  if (textValidationError) {
+    return jsonError(
+      textValidationError,
+      400
+    );
+  }
 
   const selectedStatuses =
     form
       .getAll("status")
+      .filter(
+        item =>
+          !(item instanceof File) &&
+          statusLabels.includes(String(item))
+      )
       .map(item => String(item));
-
-
-  /* ---------------------------------------------------------
-     NORMALE UPLOADS
-     --------------------------------------------------------- */
 
   const attachments = [];
 
+  let fileCount = 0;
+  let totalUploadBytes = 0;
 
   for (const [, item] of form.entries()) {
     if (!(item instanceof File)) {
@@ -1709,24 +1911,56 @@ async function handleForm(
       continue;
     }
 
+    fileCount += 1;
+
+    if (fileCount > MAX_FILE_COUNT) {
+      return jsonError(
+        "Zu viele Dateien. Maximal 5 Dateien pro Anfrage.",
+        413
+      );
+    }
+
+    const uploadError =
+      validateUpload(item);
+
+    if (uploadError) {
+      return jsonError(
+        uploadError,
+        415
+      );
+    }
+
+    totalUploadBytes +=
+      item.size;
+
+    if (
+      totalUploadBytes >
+      MAX_TOTAL_UPLOAD_BYTES
+    ) {
+      return jsonError(
+        "Die Anhänge sind insgesamt zu gross. Maximal 5 MB pro Anfrage.",
+        413
+      );
+    }
 
     const buffer =
       await item.arrayBuffer();
 
-
     const bytes =
       new Uint8Array(buffer);
-
 
     attachments.push({
       content: bytes,
 
       filename:
-        item.name,
+        safeFilename(item.name),
 
       type:
-        item.type ||
-        "application/octet-stream",
+        ALLOWED_FILE_TYPES.has(
+          String(item.type || "").toLowerCase()
+        )
+          ? String(item.type).toLowerCase()
+          : "application/octet-stream",
 
       disposition:
         "attachment",
@@ -1736,12 +1970,6 @@ async function handleForm(
     });
   }
 
-
-  /* ---------------------------------------------------------
-     KALENDER-VORBEHALT
-     Nur Inbetriebnahme + Wartung
-     --------------------------------------------------------- */
-
   const calendarAttachment =
     buildCalendarAttachment(
       form,
@@ -1749,57 +1977,39 @@ async function handleForm(
       reference
     );
 
-
   if (calendarAttachment) {
     attachments.push(
       calendarAttachment
     );
   }
 
-
   const hasCalendar =
     Boolean(calendarAttachment);
-
-
-  /* ---------------------------------------------------------
-     BETREFF
-     --------------------------------------------------------- */
 
   const ort =
     value(form, "standort_ort");
 
-
   const person =
     value(form, "firma") ||
     fullName(form);
-
 
   const subjectBits = [
     `HeatIQ | ${title}`,
     reference
   ];
 
-
   if (person) {
     subjectBits.push(person);
   }
-
 
   if (ort) {
     subjectBits.push(ort);
   }
 
-
   const subject =
     subjectBits.join(" | ");
 
-
-  /* ---------------------------------------------------------
-     HTML
-     --------------------------------------------------------- */
-
   let html;
-
 
   if (type === "inbetriebnahme") {
     html =
@@ -1822,7 +2032,7 @@ async function handleForm(
       );
   }
 
-  else if (type === "stoerung") {
+  else {
     html =
       buildStoerungEmail(
         form,
@@ -1830,21 +2040,6 @@ async function handleForm(
         attachments
       );
   }
-
-  else {
-    html =
-      buildStandardEmail(
-        form,
-        title,
-        reference,
-        attachments
-      );
-  }
-
-
-  /* ---------------------------------------------------------
-     TEXTVERSION
-     --------------------------------------------------------- */
 
   const text =
     buildText(
@@ -1855,19 +2050,14 @@ async function handleForm(
       attachments
     );
 
-
-  /* ---------------------------------------------------------
-     REPLY-TO
-     --------------------------------------------------------- */
-
-  const replyEmail =
+  const candidateReplyEmail =
     value(form, "kontakt_email") ||
     value(form, "email");
 
-
-  /* ---------------------------------------------------------
-     SENDEN
-     --------------------------------------------------------- */
+  const replyEmail =
+    isValidEmail(candidateReplyEmail)
+      ? candidateReplyEmail
+      : undefined;
 
   try {
     const result =
@@ -1884,8 +2074,7 @@ async function handleForm(
         },
 
         replyTo:
-          replyEmail ||
-          undefined,
+          replyEmail,
 
         subject,
 
@@ -1896,7 +2085,6 @@ async function handleForm(
         attachments
       });
 
-
     return Response.json({
       success: true,
 
@@ -1904,6 +2092,10 @@ async function handleForm(
 
       messageId:
         result.messageId
+    }, {
+      headers: {
+        "Cache-Control": "no-store"
+      }
     });
   }
 
@@ -1915,20 +2107,10 @@ async function handleForm(
       error
     );
 
-
-    return Response.json({
-      success: false,
-
-      error:
-        error?.message ||
-        "E-Mail-Versand fehlgeschlagen",
-
-      code:
-        error?.code ||
-        null
-    }, {
-      status: 500
-    });
+    return jsonError(
+      "Die Anfrage konnte momentan nicht gesendet werden. Bitte versuchen Sie es später nochmals.",
+      500
+    );
   }
 }
 
@@ -1945,17 +2127,29 @@ export default {
     const url =
       new URL(request.url);
 
-
     if (
-      url.pathname === "/api/form" &&
-      request.method === "POST"
+      url.pathname === "/api/form"
     ) {
+      if (
+        request.method !== "POST"
+      ) {
+        return Response.json({
+          success: false,
+          error: "Method not allowed"
+        }, {
+          status: 405,
+          headers: {
+            "Allow": "POST",
+            "Cache-Control": "no-store"
+          }
+        });
+      }
+
       return handleForm(
         request,
         env
       );
     }
-
 
     if (
       url.pathname.startsWith("/api/")
@@ -1964,10 +2158,12 @@ export default {
         success: false,
         error: "Not found"
       }, {
-        status: 404
+        status: 404,
+        headers: {
+          "Cache-Control": "no-store"
+        }
       });
     }
-
 
     return env.ASSETS.fetch(
       request
